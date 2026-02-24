@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #4a9eff;
+  --color-secondary: #a8bcd4;
+
+  --color-background-primary: #060a0f;
+  --color-background-secondary: #0d1b2a;
+
+  --color-typography-primary: #eef4fb;
+  --color-typography-secondary: #d4e4f4;
+
+  --font-urbanist: 'Urbanist', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+}
