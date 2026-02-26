@@ -1,0 +1,26 @@
+---
+import { GitBranch, CircleCheckBig, Wifi } from '@lucide/astro';
+---
+
+<div
+  class="fixed bottom-0 left-0 right-0 z-40 flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 sm:justify-between border-t border-border-color bg-background-secondary px-4 py-1.5 text-[11px] font-mono"
+>
+  <div class="flex items-center gap-4">
+    <span class="flex items-center gap-1.5 text-primary">
+      <GitBranch size={12} />
+      main
+    </span>
+    <span class="flex items-center gap-1.5 text-typography-secondary/60">
+      <CircleCheckBig size={12} class="text-success" />
+      0 problems
+    </span>
+  </div>
+  <div class="flex items-center gap-4 text-typography-secondary/60">
+    <span>Currently working on: <span class="text-primary">Portfolio</span></span>
+    <span class="flex items-center gap-1.5">
+      <Wifi size={12} class="text-success" />
+      Online
+    </span>
+    <span>TypeScript Astro</span>
+  </div>
+</div>

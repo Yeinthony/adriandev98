@@ -10,7 +10,10 @@
   --color-typography-primary: #eef4fb;
   --color-typography-secondary: #d4e4f4;
 
-  --font-urbanist: 'Urbanist', sans-serif;
-  --font-outfit: 'Outfit', sans-serif;
-  --font-cinzel: 'Cinzel', serif;
+  --color-border-color: #1a2d42;
+  --color-success: #28c840;
+
+  --font-code: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  --font-title: 'Space Grotesk', 'Sora', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', 'DM Sans', system-ui, sans-serif;
 }
