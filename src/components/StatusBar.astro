@@ -1,26 +1,142 @@
 ---
-import { GitBranch, CircleCheckBig, Wifi } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
+
+const projects = ['Isipay', 'Godrive', 'SIGMIG', 'Listify', 'Portafolio'];
+const stacks = [
+  {
+    project: 'Isipay',
+    stack: 'ReactNative Zustand Typescript TailwindCSS',
+  },
+  {
+    project: 'Godrive',
+    stack: 'Nuxt TypeScript Vuetify Pinia',
+  },
+  {
+    project: 'SIGMIG',
+    stack: 'Vue3 TypeScript Vuetify Pinia',
+  },
+  {
+    project: 'Listify',
+    stack: 'ReactNative NestJS TypeScript',
+  },
+  {
+    project: 'Portafolio',
+    stack: 'Astro TypeScript TailwindCSS',
+  },
+];
 ---
 
 <div
-  class="fixed bottom-0 left-0 right-0 z-40 flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 sm:justify-between border-t border-border-color bg-background-secondary px-4 py-1.5 text-[11px] font-mono"
+  class="fixed bottom-0 left-0 right-0 z-40 flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-4 md:justify-between border-t border-border-color bg-background-secondary px-4 py-1.5 text-[11px] font-mono"
 >
   <div class="flex items-center gap-4">
     <span class="flex items-center gap-1.5 text-primary">
-      <GitBranch size={12} />
+      <Icon name="lucide:git-branch" size={12} />
       main
     </span>
     <span class="flex items-center gap-1.5 text-typography-secondary/60">
-      <CircleCheckBig size={12} class="text-success" />
-      0 problems
+      <Icon name="lucide:circle-check-big" size={12} class="text-success" />
+      0 problemas
     </span>
   </div>
-  <div class="flex items-center gap-4 text-typography-secondary/60">
-    <span>Currently working on: <span class="text-primary">Portfolio</span></span>
-    <span class="flex items-center gap-1.5">
-      <Wifi size={12} class="text-success" />
-      Online
+  <div class="flex flex-col sm:flex-row items-center gap-0 sm:gap-4 text-typography-secondary/60">
+    <span>
+      Trabajando en:
+
+      <div class="relative max-w-sm inline-block">
+        <button
+          id="dropdown-button"
+          class="select text-primary select-xs w-full text-left flex items-center gap-1 cursor-pointer"
+        >
+          <span id="selected-project">Isipay</span>
+          <Icon name="lucide:chevron-down" size={13} />
+        </button>
+
+        <ul
+          id="dropdown-menu"
+          class="absolute z-10 w-auto bottom-full mb-1 bg-background-secondary border border-border-color rounded-md shadow-md hidden"
+        >
+          {
+            projects.map((project, i) => (
+              <li
+                class={`dropdown-item px-3 py-1 hover:bg-primary hover:text-typography-primary cursor-pointer ${i === 0 && 'rounded-t-md'} ${i === projects.length - 1 && 'rounded-b-md'}`}
+                data-value={project}
+              >
+                {project}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </span>
-    <span>TypeScript Astro</span>
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1.5">
+        <Icon name="lucide:wifi" size={12} class="text-success" />
+        En línea
+      </span>
+      <span id="stack">ReactNative Zustand Typescript TailwindCSS</span>
+    </div>
   </div>
 </div>
+
+<script id="stacks-data" type="application/json" data-stacks={JSON.stringify(stacks)}></script>
+
+<script>
+  const button = document.getElementById('dropdown-button');
+  const menu = document.getElementById('dropdown-menu');
+  const selectedProject = document.getElementById('selected-project');
+  const stackSpan = document.getElementById('stack');
+  const items = document.querySelectorAll('.dropdown-item');
+
+  const stacksData = document.getElementById('stacks-data');
+  const stacks = stacksData ? JSON.parse(stacksData.getAttribute('data-stacks') || '[]') : [];
+
+  function getStackForProject(projectName: string): string {
+    const project = stacks.find((s: any) => s.project === projectName);
+    return project ? project.stack : 'Stack no disponible';
+  }
+
+  function updateProjectDisplay(projectName: string) {
+    if (selectedProject) {
+      selectedProject.textContent = projectName;
+    }
+    if (stackSpan) {
+      stackSpan.textContent = getStackForProject(projectName);
+    }
+  }
+
+  let currentProject = 'Isipay';
+  const savedProject = localStorage.getItem('selectedProject');
+
+  if (savedProject) {
+    currentProject = savedProject;
+  }
+
+  updateProjectDisplay(currentProject);
+
+  button?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu?.classList.toggle('hidden');
+  });
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      const value = item.getAttribute('data-value');
+      if (value) {
+        currentProject = value;
+
+        updateProjectDisplay(value);
+
+        localStorage.setItem('selectedProject', value);
+
+        menu?.classList.add('hidden');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!button?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
+      menu?.classList.add('hidden');
+    }
+  });
+</script>

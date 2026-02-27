@@ -1,0 +1,35 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const socials = [
+  { icon: 'mdi:github', href: 'https://github.com/Yeinthony', label: 'GitHub' },
+  {
+    icon: 'mdi:linkedin',
+    href: 'https://www.linkedin.com/in/yeinthony-vargas-2a9274385/',
+    label: 'LinkedIn',
+  },
+  {
+    icon: 'mdi:instagram',
+    href: 'https://www.instagram.com/adriandev.98?igsh=MTNkaDV4YmJpbnk1Mg==',
+    label: 'Instagram',
+  },
+];
+---
+
+<aside
+  class="fixed left-4 top-0 z-40 hidden h-screen flex-col items-center justify-center gap-5 lg:flex"
+>
+  {
+    socials.map(({ icon, href, label }) => (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        class="text-typography-secondary transition-all hover:-translate-y-0.5 hover:text-primary"
+      >
+        <Icon name={icon} size={20} />
+      </a>
+    ))
+  }
+</aside>

@@ -1,17 +1,20 @@
 ---
 // src/components/AnimatedButton.astro
+import { Icon } from 'astro-icon/components';
+
 interface Props {
   text?: string;
   href?: string;
   variant?: 'gradient' | 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
-  icon?: any;
+  icon?: string;
   iconPosition?: 'left' | 'right';
   showDefaultIcon?: boolean;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   id?: string;
+  block?: boolean;
 }
 
 const {
@@ -20,12 +23,13 @@ const {
   variant = 'gradient',
   size = 'md',
   class: className = '',
-  icon: Icon,
+  icon,
   iconPosition = 'right',
   showDefaultIcon = true,
   type = 'button',
   disabled = false,
   id,
+  block = false,
 } = Astro.props;
 
 // Variantes de gradiente
@@ -43,56 +47,48 @@ const sizes = {
 };
 
 const iconSizes = {
-  sm: 'w-4 h-4',
-  md: 'w-5 h-5',
-  lg: 'w-6 h-6',
+  sm: 16,
+  md: 20,
+  lg: 24,
 };
 
 const gradientClass = gradients[variant];
 const sizeClass = sizes[size];
-const iconSizeClass = iconSizes[size];
+const iconSize = iconSizes[size];
 
-const showIcon = Icon || showDefaultIcon;
+const showIcon = icon || showDefaultIcon;
+const defaultIcon = 'mdi:arrow-right';
+
+const blockClass = block ? 'w-full' : '';
+const buttonDisplayClass = block ? 'w-full block' : 'inline-block';
+const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
 ---
 
-<div class={`relative group ${className}`}>
+<div class={`relative group ${blockClass} ${className}`}>
   {
     href ? (
       <a
         href={href}
         data-button-id={id}
-        class={`animated-button relative inline-block p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 ${disabled ? 'pointer-events-none opacity-50' : ''}`}
+        class={`animated-button relative ${buttonDisplayClass} p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out ${hoverScale} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
         aria-disabled={disabled}
       >
         <span
-          class={`absolute inset-0 rounded-xl bg-gradient-to-r ${gradientClass} p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+          class={`absolute inset-0 rounded-xl bg-linear-to-r ${gradientClass} p-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
         />
 
         <span class={`relative z-10 block rounded-xl bg-background-secondary ${sizeClass}`}>
           <div
-            class={`relative z-10 flex items-center justify-center space-x-2 ${iconPosition === 'left' ? 'flex-row-reverse space-x-reverse' : ''}`}
+            class={`relative z-10 flex items-center justify-center gap-2 ${iconPosition === 'left' ? 'flex-row-reverse' : ''}`}
           >
             <span class="transition-all duration-500 group-hover:translate-x-1">{text}</span>
-            {showIcon &&
-              (Icon ? (
-                <Icon
-                  class={`${iconSizeClass} transition-transform duration-500 group-hover:translate-x-1`}
-                />
-              ) : (
-                <svg
-                  class={`${iconSizeClass} transition-transform duration-500 group-hover:translate-x-1`}
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              ))}
+            {showIcon && (
+              <Icon
+                name={icon || defaultIcon}
+                size={iconSize}
+                class="transition-transform duration-500 group-hover:translate-x-1"
+              />
+            )}
           </div>
         </span>
       </a>
@@ -101,7 +97,7 @@ const showIcon = Icon || showDefaultIcon;
         type={type}
         disabled={disabled}
         data-button-id={id}
-        class={`animated-button relative inline-block p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
+        class={`animated-button relative ${buttonDisplayClass} p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out ${hoverScale} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
       >
         <span
           class={`absolute inset-0 rounded-xl bg-linear-to-r ${gradientClass} p-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
@@ -109,29 +105,16 @@ const showIcon = Icon || showDefaultIcon;
 
         <span class={`relative z-10 block rounded-xl bg-background-secondary ${sizeClass}`}>
           <div
-            class={`relative z-10 flex items-center justify-center space-x-2 ${iconPosition === 'left' ? 'flex-row-reverse space-x-reverse' : ''}`}
+            class={`relative z-10 flex items-center justify-center gap-2 ${iconPosition === 'left' ? 'flex-row-reverse' : ''}`}
           >
             <span class="transition-all duration-500 group-hover:translate-x-1">{text}</span>
-            {showIcon &&
-              (Icon ? (
-                <Icon
-                  class={`${iconSizeClass} transition-transform duration-500 group-hover:translate-x-1`}
-                />
-              ) : (
-                <svg
-                  class={`${iconSizeClass} transition-transform duration-500 group-hover:translate-x-1`}
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              ))}
+            {showIcon && (
+              <Icon
+                name={icon || defaultIcon}
+                size={iconSize}
+                class="transition-transform duration-500 group-hover:translate-x-1"
+              />
+            )}
           </div>
         </span>
       </button>
@@ -144,7 +127,6 @@ const showIcon = Icon || showDefaultIcon;
     button.addEventListener('click', (e) => {
       const buttonId = button.getAttribute('data-button-id');
 
-      // Dispatch custom event
       const customEvent = new CustomEvent('animatedButtonClick', {
         detail: {
           timestamp: Date.now(),

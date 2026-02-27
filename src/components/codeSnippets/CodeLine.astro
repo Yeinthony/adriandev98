@@ -1,0 +1,15 @@
+---
+// src/components/CodeLine.astro
+interface Props {
+  number: number;
+}
+
+const { number } = Astro.props;
+---
+
+<div class="flex">
+  <span class="mr-4 inline-block w-6 select-none text-right text-secondary/30">
+    {number}
+  </span>
+  <span><slot /></span>
+</div>

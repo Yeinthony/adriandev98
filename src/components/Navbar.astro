@@ -1,12 +1,12 @@
 ---
 // src/components/Navbar.astro
-import { Menu, X } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 import AButton from './ui/buttons/AButton.astro';
 
 const navLinks = [
   { label: 'Inicio', href: '#home' },
-  { label: 'Trabajos', href: '#works' },
-  { label: 'Sobre mi', href: '#about' },
+  { label: 'Proyectos', href: '#works' },
+  { label: 'Habilidades', href: '#about' },
   { label: 'Contacto', href: '#contact' },
 ];
 ---
@@ -37,7 +37,7 @@ const navLinks = [
       }
     </div>
 
-    <AButton size="sm" text="Hablemos" />
+    <AButton href="#contact" class="hidden md:flex" size="sm" text="Hablemos" />
 
     <button
       id="mobile-menu-button"
@@ -45,14 +45,14 @@ const navLinks = [
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <Menu class="menu-open w-5 h-5" />
-      <X class="menu-close w-5 h-5 hidden" />
+      <Icon name="lucide:menu" class="menu-open w-5 h-5" />
+      <Icon name="lucide:x" class="menu-close w-5 h-5 hidden" />
     </button>
   </div>
 
   <div
     id="mobile-menu"
-    class="hidden border-t border-border-color bg-background-primary px-6 pb-6 md:hidden"
+    class="hidden border-t border-border-color bg-background-primary px-6 pb-6 pt-2 md:hidden"
   >
     {
       navLinks.map((link) => (
@@ -64,12 +64,7 @@ const navLinks = [
         </a>
       ))
     }
-    <a
-      href="#contact"
-      class="mobile-link mt-3 block rounded-xl bg-primary px-5 py-2.5 text-center font-mono text-sm font-semibold text-background-primary"
-    >
-      Let's Talk
-    </a>
+    <AButton href="#contact" class="mt-2 mobile-link" block size="sm" text="Hablemos" />
   </div>
 </nav>
 

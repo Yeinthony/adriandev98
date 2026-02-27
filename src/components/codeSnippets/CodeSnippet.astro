@@ -1,0 +1,29 @@
+---
+// src/components/CodeSnippet.astro
+interface Props {
+  filename?: string;
+  class?: string;
+}
+
+const { filename, class: className = '' } = Astro.props;
+---
+
+<div
+  class={`overflow-hidden rounded-xl border border-border-color bg-background-secondary ${className}`}
+>
+  {
+    filename && (
+      <div class="flex items-center gap-2 border-b border-border-color px-4 py-2">
+        <div class="flex gap-1.5">
+          <span class="h-3 w-3 rounded-full bg-red-500" />
+          <span class="h-3 w-3 rounded-full bg-amber-400" />
+          <span class="h-3 w-3 rounded-full bg-success" />
+        </div>
+        <span class="font-mono text-xs text-typography-secondary/60">{filename}</span>
+      </div>
+    )
+  }
+  <div class="overflow-x-auto p-4 font-mono text-sm leading-6">
+    <code class="bg-amber-100"><slot /></code>
+  </div>
+</div>
