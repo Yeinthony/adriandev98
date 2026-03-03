@@ -1,72 +1,169 @@
 ---
-// src/components/Navbar.astro
 import { Icon } from 'astro-icon/components';
 import AButton from './ui/buttons/AButton.astro';
 
 const navLinks = [
-  { label: 'Inicio', href: '#home' },
-  { label: 'Proyectos', href: '#works' },
-  { label: 'Habilidades', href: '#about' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Inicio', href: '#home', prefix: '00' },
+  { label: 'Proyectos', href: '#works', prefix: '01' },
+  { label: 'Habilidades', href: '#about', prefix: '02' },
+  { label: 'Contacto', href: '#contact', prefix: '03' },
 ];
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 border-b border-border-color bg-background-primary/90 backdrop-blur-md"
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 border-b border-border-color/60 bg-background-primary/85 backdrop-blur-xl transition-all duration-300"
 >
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <a href="#home" class="flex items-center gap-2">
-      <div
-        class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-mono text-sm font-bold text-background-primary"
-      >
-        {'</>'}
+  <div class="mx-auto flex lg:max-w-4xl xl:max-w-6xl items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5">
+    <!-- Logo -->
+    <a href="#home" class="group flex items-center gap-2.5 transition-all duration-300">
+      <div class="relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 transition-all duration-300 group-hover:border-primary/60 group-hover:bg-primary/15 group-hover:shadow-[0_0_12px_rgba(74,158,255,0.15)]">
+        <span class="font-code text-[10px] sm:text-xs font-bold text-primary">{'</>'}</span>
       </div>
-      <span class="font-mono text-sm font-semibold text-typography-primary"> AdrianDev.98</span>
+      <div class="flex items-center">
+        <span class="font-code text-xs sm:text-sm font-semibold text-typography-primary transition-colors duration-300 group-hover:text-white">
+          AdrianDev
+        </span>
+        <span class="font-code text-xs sm:text-sm text-primary/60 transition-colors duration-300 group-hover:text-primary">
+          .98
+        </span>
+      </div>
     </a>
 
-    <div class="hidden items-center gap-1 md:flex">
-      {
-        navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="rounded-lg px-4 py-2 font-mono text-sm text-typography-primary transition-colors hover:bg-border-color hover:text-primary]"
-          >
-            {link.label}
-          </a>
-        ))
-      }
+    <!-- Desktop nav links -->
+    <div class="hidden items-center md:flex">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          data-nav-link
+          class="nav-link group relative rounded-lg px-3 lg:px-4 py-2 font-code text-[11px] sm:text-xs text-typography-secondary/60 transition-all duration-200 hover:text-typography-primary"
+        >
+          <!-- Active indicator bar -->
+          <div class="nav-indicator absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 rounded-full bg-primary transition-all duration-300"></div>
+
+          <span class="nav-prefix inline-flex items-center max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[3ch] group-hover:opacity-100 text-primary/40 align-middle whitespace-nowrap">
+            {link.prefix}.
+          </span>
+          <span class="nav-hash inline-flex items-center max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[1ch] group-hover:opacity-100 text-primary/50 align-middle whitespace-nowrap">
+            #
+          </span>
+          <span class="align-middle transition-colors duration-200">{link.label}</span>
+        </a>
+      ))}
     </div>
 
-    <AButton href="#contact" class="hidden md:flex" size="sm" text="Hablemos" />
+    <!-- Right side: status + CTA -->
+    <div class="hidden items-center gap-3 md:flex">
+      <AButton href="#contact" size="sm" text="Hablemos" icon="lucide:send" />
+    </div>
 
+    <!-- Mobile menu button -->
     <button
       id="mobile-menu-button"
-      class="rounded-lg p-2 text-typography-secondary transition-colors hover:bg-background-secondary md:hidden"
+      class="relative flex h-8 w-8 items-center justify-center rounded-lg border border-border-color/50 bg-background-secondary/50 text-typography-secondary/60 transition-all duration-200 hover:border-primary/40 hover:text-primary md:hidden"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <Icon name="lucide:menu" class="menu-open w-5 h-5" />
-      <Icon name="lucide:x" class="menu-close w-5 h-5 hidden" />
+      <Icon name="lucide:menu" class="menu-open w-4 h-4" />
+      <Icon name="lucide:x" class="menu-close w-4 h-4 hidden" />
     </button>
   </div>
 
+  <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-border-color bg-background-primary px-6 pb-6 pt-2 md:hidden"
+    class="mobile-menu grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-300 ease-in-out border-t border-border-color/40 bg-background-primary/95 backdrop-blur-xl md:hidden"
   >
-    {
-      navLinks.map((link) => (
+    <div class="overflow-hidden">
+      <div class="px-4 pb-5 pt-3">
+    <!-- Terminal header -->
+    <div class="flex items-center gap-2 mb-3 px-1">
+      <div class="flex gap-1.5">
+        <span class="h-2 w-2 rounded-full bg-red-500/70"></span>
+        <span class="h-2 w-2 rounded-full bg-amber-400/70"></span>
+        <span class="h-2 w-2 rounded-full bg-success/70"></span>
+      </div>
+      <span class="font-code text-[10px] text-typography-secondary/30">~/navigation</span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      {navLinks.map((link, i) => (
         <a
           href={link.href}
-          class="mobile-link block rounded-lg px-4 py-3 font-mono text-sm text-typography-secondary transition-colors hover:bg-background-secondary hover:text-primary"
+          data-nav-link
+          class="mobile-link mobile-menu-item group flex items-center gap-3 rounded-lg px-3 py-2.5 font-code text-xs text-typography-secondary/60 transition-all duration-200 hover:bg-background-secondary/80 hover:text-typography-primary"
+          style={`--delay: ${i * 0.05}s;`}
         >
-          {link.label}
+          <span class="text-primary/40 text-[10px] font-code">{link.prefix}</span>
+          <span class="text-success/50 text-[10px]">$</span>
+          <span class="transition-colors duration-200">{link.label}</span>
+          <Icon name="lucide:chevron-right" class="w-3 h-3 ml-auto text-typography-secondary/20 transition-all duration-200 group-hover:text-primary/60 group-hover:translate-x-0.5" />
         </a>
-      ))
-    }
-    <AButton href="#contact" class="mt-2 mobile-link" block size="sm" text="Hablemos" />
+      ))}
+    </div>
+
+    <div class="mt-3 pt-3 border-t border-border-color/30">
+      <AButton href="#contact" class="mobile-link w-full" block size="sm" text="Hablemos" icon="lucide:send" />
+    </div>
+      </div>
+    </div>
   </div>
 </nav>
+
+<!-- Spacer for fixed navbar -->
+<div class="h-[52px] sm:h-[56px]"></div>
+
+<style>
+  /* Active link styles */
+  .nav-link.is-active {
+    color: var(--color-typography-primary);
+  }
+
+  .nav-link.is-active .nav-prefix {
+    max-width: 3ch;
+    opacity: 1;
+    color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  .nav-link.is-active .nav-hash {
+    max-width: 1ch;
+    opacity: 1;
+    color: var(--color-primary);
+  }
+
+  .nav-link.is-active .nav-indicator {
+    width: 16px;
+  }
+
+  /* Mobile menu curtain */
+  .mobile-menu.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  /* Staggered items only when open */
+  .mobile-menu.is-open .mobile-menu-item {
+    animation: menu-slide 0.25s ease-out both;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes menu-slide {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Scroll shadow effect */
+  #main-nav.scrolled {
+    border-color: color-mix(in srgb, var(--color-border-color) 80%, transparent);
+    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
+  }
+</style>
 
 <script>
   const menuButton = document.getElementById('mobile-menu-button');
@@ -74,32 +171,93 @@ const navLinks = [
   const menuOpen = document.querySelector('.menu-open');
   const menuClose = document.querySelector('.menu-close');
   const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mainNav = document.getElementById('main-nav');
+
+  function openMenu() {
+    mobileMenu?.classList.add('is-open');
+    menuOpen?.classList.add('hidden');
+    menuClose?.classList.remove('hidden');
+    menuButton?.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.remove('is-open');
+    menuOpen?.classList.remove('hidden');
+    menuClose?.classList.add('hidden');
+    menuButton?.setAttribute('aria-expanded', 'false');
+  }
 
   function toggleMenu() {
-    const isOpen = mobileMenu?.classList.contains('hidden');
-
-    if (isOpen) {
-      mobileMenu?.classList.remove('hidden');
-      menuOpen?.classList.add('hidden');
-      menuClose?.classList.remove('hidden');
-      menuButton?.setAttribute('aria-expanded', 'true');
+    if (mobileMenu?.classList.contains('is-open')) {
+      closeMenu();
     } else {
-      mobileMenu?.classList.add('hidden');
-      menuOpen?.classList.remove('hidden');
-      menuClose?.classList.add('hidden');
-      menuButton?.setAttribute('aria-expanded', 'false');
+      openMenu();
     }
   }
 
   menuButton?.addEventListener('click', toggleMenu);
 
-  // Cerrar menú al hacer click en un link
   mobileLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
-      menuOpen?.classList.remove('hidden');
-      menuClose?.classList.add('hidden');
-      menuButton?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
   });
+
+  // Scroll shadow effect
+  function updateNavShadow() {
+    if (window.scrollY > 10) {
+      mainNav?.classList.add('scrolled');
+    } else {
+      mainNav?.classList.remove('scrolled');
+    }
+  }
+
+  // Active section detection
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const sections = Array.from(navLinks)
+    .map((link) => {
+      const href = link.getAttribute('href');
+      if (href?.startsWith('#')) {
+        return document.querySelector<HTMLElement>(href);
+      }
+      return null;
+    })
+    .filter((el): el is HTMLElement => el !== null);
+
+  function updateActiveLink() {
+    let currentSection = '';
+
+    sections.forEach((section) => {
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const scrollPosition = window.scrollY + 100;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = `#${section.id}`;
+        }
+      }
+    });
+
+    if (window.scrollY < 100) {
+      currentSection = '#home';
+    }
+
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+
+      if (href === currentSection) {
+        link.classList.add('is-active');
+      } else {
+        link.classList.remove('is-active');
+      }
+    });
+  }
+
+  function onScroll() {
+    updateNavShadow();
+    updateActiveLink();
+  }
+
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('load', onScroll);
+  onScroll();
 </script>

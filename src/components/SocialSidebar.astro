@@ -2,34 +2,63 @@
 import { Icon } from 'astro-icon/components';
 
 const socials = [
-  { icon: 'mdi:github', href: 'https://github.com/Yeinthony', label: 'GitHub' },
-  {
-    icon: 'mdi:linkedin',
-    href: 'https://www.linkedin.com/in/yeinthony-vargas-2a9274385/',
-    label: 'LinkedIn',
-  },
-  {
-    icon: 'mdi:instagram',
-    href: 'https://www.instagram.com/adriandev.98?igsh=MTNkaDV4YmJpbnk1Mg==',
-    label: 'Instagram',
-  },
+  { icon: 'simple-icons:github', href: 'https://github.com/Yeinthony', label: 'GitHub', color: '#d4e4f4' },
+  { icon: 'simple-icons:linkedin', href: 'https://www.linkedin.com/in/yeinthony-vargas-2a9274385/', label: 'LinkedIn', color: '#0a66c2' },
+  { icon: 'simple-icons:instagram', href: 'https://www.instagram.com/adriandev.98?igsh=MTNkaDV4YmJpbnk1Mg==', label: 'Instagram', color: '#e4405f' },
 ];
 ---
 
 <aside
-  class="fixed left-4 top-0 z-40 hidden h-screen flex-col items-center justify-center gap-5 lg:flex"
+  class="fixed left-4 xl:left-6 top-0 z-40 hidden h-screen flex-col items-center justify-center gap-1.5 lg:flex"
 >
-  {
-    socials.map(({ icon, href, label }) => (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={label}
-        class="text-typography-secondary transition-all hover:-translate-y-0.5 hover:text-primary"
-      >
-        <Icon name={icon} size={20} />
-      </a>
-    ))
-  }
+  <!-- Top line -->
+  <div class="w-px h-16 bg-gradient-to-b from-transparent to-border-color/50 mb-2"></div>
+
+  {socials.map(({ icon, href, label, color }, i) => (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      class="social-icon group relative flex h-9 w-9 items-center justify-center rounded-lg border border-border-color/40 bg-background-secondary/50 transition-all duration-300 hover:border-transparent hover:-translate-y-0.5"
+      style={`--delay: ${i * 0.1}s; --glow: ${color};`}
+    >
+      <!-- Hover glow -->
+      <div
+        class="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
+        style={`background: radial-gradient(ellipse at center, ${color}15 0%, transparent 70%); border: 1px solid ${color}40;`}
+      ></div>
+      <Icon
+        name={icon}
+        class="relative w-3.5 h-3.5 text-typography-secondary/40 transition-all duration-300 group-hover:text-typography-primary"
+        style={`--icon-color: ${color};`}
+      />
+    </a>
+  ))}
+
+  <!-- Bottom line -->
+  <div class="w-px h-16 bg-gradient-to-b from-border-color/50 to-transparent mt-2"></div>
 </aside>
+
+<style>
+  .social-icon {
+    animation: social-in 0.4s ease-out both;
+    animation-delay: calc(0.6s + var(--delay));
+  }
+
+  @keyframes social-in {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .social-icon:hover [data-icon] {
+    color: var(--glow) !important;
+    filter: drop-shadow(0 0 6px var(--glow));
+  }
+</style>

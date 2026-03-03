@@ -1,0 +1,346 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Project {
+  title: string;
+  slug: string;
+  description: string;
+  tags: { name: string; icon: string; color: string }[];
+  accent: string;
+  liveUrl: string;
+  repoUrl: string;
+  featured?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: 'EcoTracker',
+    slug: 'eco-tracker',
+    description:
+      'Dashboard en tiempo real para monitorear la huella de carbono con gráficas interactivas e insights accionables.',
+    tags: [
+      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'D3.js', icon: 'simple-icons:d3dotjs', color: '#f9a03c' },
+      { name: 'Node.js', icon: 'simple-icons:nodedotjs', color: '#5fa04e' },
+      { name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169e1' },
+    ],
+    accent: '#28c840',
+    liveUrl: '#',
+    repoUrl: '#',
+    featured: true,
+  },
+  {
+    title: 'PixelBrew',
+    slug: 'pixel-brew',
+    description:
+      'Design system y librería de componentes con enfoque accessibility-first. 40+ componentes UI reutilizables.',
+    tags: [
+      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6' },
+      { name: 'Storybook', icon: 'simple-icons:storybook', color: '#ff4785' },
+      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4' },
+    ],
+    accent: '#4a9eff',
+    liveUrl: '#',
+    repoUrl: '#',
+    featured: true,
+  },
+  {
+    title: 'SoundScape',
+    slug: 'sound-scape',
+    description:
+      'Plataforma de descubrimiento musical con recomendaciones AI y un reproductor de audio inmersivo.',
+    tags: [
+      { name: 'Next.js', icon: 'simple-icons:nextdotjs', color: '#ffffff' },
+      { name: 'Spotify API', icon: 'simple-icons:spotify', color: '#1db954' },
+      { name: 'Framer', icon: 'simple-icons:framer', color: '#0055ff' },
+    ],
+    accent: '#c678dd',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'TaskFlow',
+    slug: 'task-flow',
+    description:
+      'Herramienta de gestión de proyectos estilo Kanban con colaboración en tiempo real y drag-and-drop.',
+    tags: [
+      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Socket.io', icon: 'simple-icons:socketdotio', color: '#010101' },
+      { name: 'Express', icon: 'simple-icons:express', color: '#ffffff' },
+      { name: 'MongoDB', icon: 'simple-icons:mongodb', color: '#47a248' },
+    ],
+    accent: '#e5c07b',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'DevBlog',
+    slug: 'dev-blog',
+    description:
+      'Blog para desarrolladores con Markdown, syntax highlighting, dark mode y generación estática ultra rápida.',
+    tags: [
+      { name: 'Next.js', icon: 'simple-icons:nextdotjs', color: '#ffffff' },
+      { name: 'MDX', icon: 'simple-icons:mdx', color: '#1b1f24' },
+      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4' },
+    ],
+    accent: '#61afef',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'FormCraft',
+    slug: 'form-craft',
+    description:
+      'Constructor de formularios dinámicos con lógica condicional, reglas de validación y outputs temáticos.',
+    tags: [
+      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Zod', icon: 'simple-icons:zod', color: '#3068b7' },
+    ],
+    accent: '#98c379',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+];
+
+const featured = projects.filter((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+---
+
+<section id="works" class="section-reveal relative py-20 sm:py-28 overflow-hidden">
+  <!-- Background grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #4a9eff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="relative mx-auto lg:max-w-4xl xl:max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-10 sm:mb-16">
+      <div class="flex items-end justify-between">
+        <div>
+          <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
+            {'// 01. Trabajos destacados'}
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary">Proyectos</h2>
+        </div>
+        <div class="hidden font-code text-[10px] sm:text-xs text-typography-secondary/30 md:block">
+          <span class="text-success">$</span> ls ./projects <span class="text-typography-secondary/50">--sort=recent</span>
+        </div>
+      </div>
+      <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
+        <span class="text-typography-secondary/40">found</span>{' '}
+        <span class="text-primary">{projects.length} entries</span>{' '}
+        <span class="text-typography-secondary/40">in</span>{' '}
+        <span class="text-typography-secondary/60">~/projects</span>
+      </p>
+    </div>
+
+    <!-- Featured projects: larger cards -->
+    {featured.length > 0 && (
+      <div class="grid gap-3 sm:gap-4 md:grid-cols-2 mb-3 sm:mb-4">
+        {featured.map((project, index) => (
+          <article
+            class="project-card group relative flex flex-col overflow-hidden rounded-xl border border-border-color/60 bg-background-secondary transition-all duration-300 hover:border-transparent"
+            style={`--i: ${index}; --accent: ${project.accent};`}
+          >
+            <!-- Hover glow -->
+            <div
+              class="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
+              style={`background: radial-gradient(ellipse at top, ${project.accent}08 0%, transparent 60%); border: 1px solid ${project.accent}30;`}
+            ></div>
+
+            <!-- Terminal header -->
+            <div class="relative flex items-center justify-between border-b border-border-color/40 px-4 sm:px-5 py-2.5 sm:py-3">
+              <div class="flex items-center gap-2">
+                <div class="flex gap-1.5">
+                  <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-red-500/80"></span>
+                  <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-amber-400/80"></span>
+                  <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-success/80"></span>
+                </div>
+                <span class="font-code text-[10px] sm:text-xs text-typography-secondary/40">
+                  ~/{project.slug}/
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="inline-block h-1.5 w-1.5 rounded-full"
+                  style={`background: ${project.accent};`}
+                ></span>
+                <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/30">featured</span>
+              </div>
+            </div>
+
+            <div class="relative flex flex-1 flex-col p-4 sm:p-6">
+              <!-- Title with accent line -->
+              <div class="flex items-start gap-3 mb-3">
+                <div
+                  class="mt-1 h-5 w-1 rounded-full shrink-0 transition-all duration-300 group-hover:h-7"
+                  style={`background: ${project.accent};`}
+                ></div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-bold text-typography-primary group-hover:text-white transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+
+              <p class="mb-4 sm:mb-5 flex-1 text-xs sm:text-sm leading-relaxed text-typography-secondary/60 pl-4">
+                {project.description}
+              </p>
+
+              <!-- Tech tags with icons -->
+              <div class="mb-4 sm:mb-5 flex flex-wrap gap-1.5 sm:gap-2 pl-4">
+                {project.tags.map((tag) => (
+                  <span class="inline-flex items-center gap-1 sm:gap-1.5 rounded-md border border-border-color/40 bg-background-primary/50 px-2 py-0.5 sm:px-2.5 sm:py-1 font-code text-[9px] sm:text-[11px] text-typography-secondary/60 transition-colors duration-200 hover:border-border-color hover:text-typography-secondary">
+                    <Icon name={tag.icon} class="w-2.5 h-2.5 sm:w-3 sm:h-3" style={`color: ${tag.color};`} />
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Actions -->
+              <div class="flex items-center gap-4 pl-4">
+                <a
+                  href={project.liveUrl}
+                  class="group/link flex items-center gap-1.5 font-code text-[10px] sm:text-xs transition-colors duration-200"
+                  style={`color: ${project.accent};`}
+                  aria-label={`Ver demo de ${project.title}`}
+                >
+                  <Icon name="lucide:external-link" class="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                  Live Demo
+                </a>
+                <a
+                  href={project.repoUrl}
+                  class="group/link flex items-center gap-1.5 font-code text-[10px] sm:text-xs text-typography-secondary/40 transition-colors duration-200 hover:text-typography-secondary"
+                  aria-label={`Ver código de ${project.title}`}
+                >
+                  <Icon name="simple-icons:github" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  Source
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+
+    <!-- Rest of projects: compact grid -->
+    <div class="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {rest.map((project, index) => (
+        <article
+          class="project-card group relative flex flex-col overflow-hidden rounded-xl border border-border-color/60 bg-background-secondary transition-all duration-300 hover:border-transparent"
+          style={`--i: ${index + featured.length}; --accent: ${project.accent};`}
+        >
+          <!-- Hover glow -->
+          <div
+            class="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
+            style={`background: radial-gradient(ellipse at top, ${project.accent}08 0%, transparent 60%); border: 1px solid ${project.accent}30;`}
+          ></div>
+
+          <!-- Mini terminal header -->
+          <div class="relative flex items-center gap-2 border-b border-border-color/30 px-3 sm:px-4 py-2">
+            <div class="flex gap-1">
+              <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-500/60"></span>
+              <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-amber-400/60"></span>
+              <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-success/60"></span>
+            </div>
+            <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/30 truncate">
+              ~/{project.slug}/
+            </span>
+          </div>
+
+          <div class="relative flex flex-1 flex-col p-3 sm:p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div
+                class="h-4 w-0.5 rounded-full shrink-0"
+                style={`background: ${project.accent};`}
+              ></div>
+              <h3 class="text-sm sm:text-base font-bold text-typography-primary group-hover:text-white transition-colors duration-300 truncate">
+                {project.title}
+              </h3>
+            </div>
+
+            <p class="mb-3 flex-1 text-[10px] sm:text-xs leading-relaxed text-typography-secondary/50 line-clamp-3">
+              {project.description}
+            </p>
+
+            <!-- Tech icons only (compact) -->
+            <div class="flex items-center gap-1.5 mb-3">
+              {project.tags.map((tag) => (
+                <div
+                  class="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-background-primary/50 border border-border-color/30 transition-colors duration-200 hover:border-border-color"
+                  title={tag.name}
+                >
+                  <Icon name={tag.icon} class="w-2.5 h-2.5 sm:w-3 sm:h-3" style={`color: ${tag.color};`} />
+                </div>
+              ))}
+            </div>
+
+            <!-- Actions compact -->
+            <div class="flex items-center gap-3">
+              <a
+                href={project.liveUrl}
+                class="flex items-center gap-1 font-code text-[9px] sm:text-[10px] transition-colors duration-200"
+                style={`color: ${project.accent};`}
+                aria-label={`Ver demo de ${project.title}`}
+              >
+                <Icon name="lucide:external-link" class="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                Demo
+              </a>
+              <a
+                href={project.repoUrl}
+                class="flex items-center gap-1 font-code text-[9px] sm:text-[10px] text-typography-secondary/30 transition-colors duration-200 hover:text-typography-secondary"
+                aria-label={`Ver código de ${project.title}`}
+              >
+                <Icon name="simple-icons:github" class="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                Source
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Terminal footer -->
+    <div class="mt-4 sm:mt-6 rounded-xl border border-border-color/40 bg-background-secondary/50 px-3 sm:px-4 py-2.5 sm:py-3">
+      <div class="flex items-center justify-between font-code text-[10px] sm:text-xs">
+        <div class="flex items-center gap-2">
+          <span class="text-success">$</span>
+          <span class="text-typography-secondary/40">showing</span>
+          <span class="text-primary">{projects.length}/{projects.length}</span>
+          <span class="text-typography-secondary/40">projects</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-success text-[10px]">●</span>
+          <span class="text-typography-secondary/30">all repos public</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-card {
+    animation: project-in 0.4s ease-out both;
+    animation-delay: calc(var(--i) * 0.07s);
+  }
+
+  @keyframes project-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .project-card:hover [data-icon] {
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

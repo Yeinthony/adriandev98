@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-primary: #4a9eff;
   --color-secondary: #a8bcd4;
@@ -16,4 +20,27 @@
   --font-code: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
   --font-title: 'Space Grotesk', 'Sora', 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', 'DM Sans', system-ui, sans-serif;
+
+  --animate-float: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Section reveal on scroll */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

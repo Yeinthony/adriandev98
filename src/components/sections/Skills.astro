@@ -1,0 +1,292 @@
+---
+import { Icon } from 'astro-icon/components';
+import Bracket from '../codeSnippets/Bracket.astro';
+import CodeLine from '../codeSnippets/CodeLine.astro';
+import CodeSnippet from '../codeSnippets/CodeSnippet.astro';
+import Comment from '../codeSnippets/Comment.astro';
+import FuncName from '../codeSnippets/FuncName.astro';
+import Keyword from '../codeSnippets/Keyword.astro';
+import Param from '../codeSnippets/Param.astro';
+import StringVal from '../codeSnippets/StringVal.astro';
+
+interface Skill {
+  name: string;
+  icon: string;
+  color: string;
+  exp: string;
+}
+
+interface SkillCategory {
+  title: string;
+  prefix: string;
+  skills: Skill[];
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    title: 'Frontend',
+    prefix: '@frontend',
+    skills: [
+      { name: 'React', icon: 'simple-icons:react', color: '#61dafb', exp: '3 años' },
+      { name: 'Vue', icon: 'simple-icons:vuedotjs', color: '#4fc08d', exp: '2 años' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6', exp: '3 años' },
+      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4', exp: '3 años' },
+      { name: 'Astro', icon: 'simple-icons:astro', color: '#ff5d01', exp: '1 año' },
+      { name: 'HTML / CSS', icon: 'simple-icons:html5', color: '#e34f26', exp: '4 años' },
+    ],
+  },
+  {
+    title: 'Mobile',
+    prefix: '@mobile',
+    skills: [
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb', exp: '2 años' },
+      { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff', exp: '2 años' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0', exp: '1 año' },
+    ],
+  },
+  {
+    title: 'Tools & Workflow',
+    prefix: '@tools',
+    skills: [
+      { name: 'Git', icon: 'simple-icons:git', color: '#f05032', exp: '3 años' },
+      { name: 'GitHub', icon: 'simple-icons:github', color: '#ffffff', exp: '3 años' },
+      { name: 'VS Code', icon: 'simple-icons:visualstudiocode', color: '#007acc', exp: '4 años' },
+      { name: 'Figma', icon: 'simple-icons:figma', color: '#f24e1e', exp: '2 años' },
+      { name: 'Vite', icon: 'simple-icons:vite', color: '#646cff', exp: '2 años' },
+    ],
+  },
+  {
+    title: 'Backend Basics',
+    prefix: '@backend',
+    skills: [
+      { name: 'Node.js', icon: 'simple-icons:nodedotjs', color: '#5fa04e', exp: '2 años' },
+      { name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169e1', exp: '1 año' },
+      { name: 'Docker', icon: 'simple-icons:docker', color: '#2496ed', exp: '1 año' },
+      { name: 'REST APIs', icon: 'lucide:globe', color: '#4a9eff', exp: '3 años' },
+    ],
+  },
+];
+
+const stats = [
+  { value: '50+', label: 'Proyectos', icon: 'lucide:folder-code' },
+  { value: '3+', label: 'Años exp.', icon: 'lucide:calendar' },
+  { value: '1.2k', label: 'Commits', icon: 'lucide:git-commit-horizontal' },
+  { value: '15+', label: 'Clientes', icon: 'lucide:users' },
+];
+
+const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0);
+---
+
+<section id="about" class="section-reveal relative py-20 sm:py-28 overflow-hidden">
+  <!-- Background grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #4a9eff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="relative mx-auto lg:max-w-4xl xl:max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-10 sm:mb-16">
+      <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
+        {'// 02. Skills & Expertise'}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary">Tech Stack</h2>
+      <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
+        <span class="text-success">$</span> npm ls --installed --depth=0
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-5">
+      <!-- Skills categories: 3 columns -->
+      <div class="lg:col-span-3 flex flex-col gap-6 sm:gap-8">
+        {skillCategories.map((cat, catIndex) => (
+          <div class="skill-category" style={`--delay: ${catIndex * 0.1}s`}>
+            <!-- Category header -->
+            <div class="flex items-center gap-2 mb-3 sm:mb-4">
+              <span class="font-code text-[10px] sm:text-xs text-primary/60">{cat.prefix}/</span>
+              <span class="font-code text-xs sm:text-sm font-semibold text-typography-primary">{cat.title}</span>
+              <div class="flex-1 h-px bg-border-color/50"></div>
+              <span class="font-code text-[10px] text-typography-secondary/30">{cat.skills.length} packages</span>
+            </div>
+
+            <!-- Skill icons grid -->
+            <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
+              {cat.skills.map((skill, i) => (
+                <div
+                  class="skill-card group relative rounded-xl border border-border-color/60 bg-background-secondary p-3 sm:p-4 transition-all duration-300 hover:border-transparent cursor-default"
+                  style={`--glow: ${skill.color}; --i: ${i}; --cat-delay: ${catIndex * 0.1}s`}
+                >
+                  <!-- Glow effect on hover -->
+                  <div
+                    class="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={`background: radial-gradient(ellipse at center, ${skill.color}12 0%, transparent 70%); border: 1px solid ${skill.color}40;`}
+                  ></div>
+
+                  <div class="relative flex flex-col items-center gap-1.5 sm:gap-2">
+                    <div
+                      class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg transition-all duration-300 group-hover:scale-110"
+                      style={`background: ${skill.color}10;`}
+                    >
+                      <Icon
+                        name={skill.icon}
+                        class="w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300"
+                        style={`color: ${skill.color}90;`}
+                      />
+                    </div>
+                    <span class="font-code text-[9px] sm:text-[11px] text-typography-secondary/70 text-center leading-tight group-hover:text-typography-primary transition-colors duration-300">
+                      {skill.name}
+                    </span>
+                    <span
+                      class="font-code text-[8px] sm:text-[9px] opacity-40 group-hover:opacity-80 transition-opacity duration-300"
+                      style={`color: ${skill.color};`}
+                    >
+                      {skill.exp}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right side: Code + Stats + extras -->
+      <div class="lg:col-span-2 flex flex-col gap-3 sm:gap-4">
+        <!-- Stats as horizontal strip -->
+        <div class="grid grid-cols-2 gap-2 sm:gap-3">
+          {stats.map((stat, i) => (
+            <div
+              class="stat-card group rounded-xl border border-border-color/60 bg-background-secondary p-3 sm:p-4 transition-all duration-300 hover:border-primary/30 flex items-center gap-3"
+              style={`--i: ${i}`}
+            >
+              <div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg bg-primary/8 transition-colors duration-300 group-hover:bg-primary/15">
+                <Icon name={stat.icon} class="w-4 h-4 sm:w-[18px] sm:h-[18px] text-primary/60 group-hover:text-primary transition-colors duration-300" />
+              </div>
+              <div>
+                <div class="text-lg sm:text-xl font-bold text-primary font-code leading-none">
+                  {stat.value}
+                </div>
+                <div class="font-code text-[9px] sm:text-[10px] text-typography-secondary/50 mt-0.5">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Code snippet -->
+        <CodeSnippet filename="skills.ts">
+          <CodeLine number={1} tab={1}>
+            <Comment>{'// My development philosophy'}</Comment>
+          </CodeLine>
+          <CodeLine number={2} tab={1}>
+            <Keyword>interface</Keyword>{' '}
+            <FuncName>Mindset</FuncName>{' '}
+            <Bracket>{'{'}</Bracket>
+          </CodeLine>
+          <CodeLine number={3} tab={2}>
+            <Param>approach</Param>: <StringVal>{'"user-first"'}</StringVal>;
+          </CodeLine>
+          <CodeLine number={4} tab={2}>
+            <Param>code</Param>: <StringVal>{'"clean & readable"'}</StringVal>;
+          </CodeLine>
+          <CodeLine number={5} tab={2}>
+            <Param>testing</Param>: <StringVal>{'"always"'}</StringVal>;
+          </CodeLine>
+          <CodeLine number={6} tab={2}>
+            <Param>learning</Param>: <StringVal>{'"never stops"'}</StringVal>;
+          </CodeLine>
+          <CodeLine number={7} tab={1}>
+            <Bracket>{'}'}</Bracket>
+          </CodeLine>
+          <CodeLine number={8} tab={1}>{''}</CodeLine>
+          <CodeLine number={9} tab={1}>
+            <Keyword>const</Keyword>{' '}
+            <FuncName>buildProject</FuncName>{' '}
+            = <Bracket>{'('}</Bracket>
+          </CodeLine>
+          <CodeLine number={10} tab={2}>
+            <Param>idea</Param>: <FuncName>string</FuncName>,
+          </CodeLine>
+          <CodeLine number={11} tab={2}>
+            <Param>passion</Param>: <FuncName>boolean</FuncName>
+          </CodeLine>
+          <CodeLine number={12} tab={1}>
+            <Bracket>{')'}</Bracket>{' '}
+            <Keyword>{'=>'}</Keyword>{' '}
+            <Bracket>{'{'}</Bracket>
+          </CodeLine>
+          <CodeLine number={13} tab={2}>
+            <Keyword>return</Keyword>{' '}
+            <StringVal>{'"Something amazing"'}</StringVal>;
+          </CodeLine>
+          <CodeLine number={14} tab={1}>
+            <Bracket>{'}'}</Bracket>;
+          </CodeLine>
+        </CodeSnippet>
+
+        <!-- Terminal summary block -->
+        <div class="rounded-xl border border-border-color/40 bg-background-secondary/50 px-3 sm:px-4 py-3 sm:py-4 flex flex-col gap-2">
+          <div class="flex items-center gap-2 font-code text-[10px] sm:text-xs">
+            <span class="text-success">$</span>
+            <span class="text-typography-secondary/50">npm install</span>
+            <span class="text-primary">@adrian/skills</span>
+            <span class="terminal-cursor inline-block w-1.5 h-3.5 sm:h-4 bg-primary/80 ml-1"></span>
+          </div>
+          <div class="h-px bg-border-color/30"></div>
+          <div class="flex flex-col gap-1 font-code text-[10px] sm:text-[11px]">
+            <div class="flex justify-between">
+              <span class="text-typography-secondary/40">added</span>
+              <span class="text-success">{totalSkills} packages</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-typography-secondary/40">categories</span>
+              <span class="text-primary">{skillCategories.length} scopes</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-typography-secondary/40">status</span>
+              <span class="text-success">✓ all installed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Icon glow on hover */
+  .skill-card:hover [data-icon] {
+    filter: drop-shadow(0 0 8px var(--glow));
+    color: var(--glow) !important;
+  }
+
+  /* Staggered entrance */
+  .skill-card {
+    animation: card-in 0.4s ease-out both;
+    animation-delay: calc(var(--cat-delay) + var(--i) * 0.05s);
+  }
+
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stat-card {
+    animation: card-in 0.4s ease-out both;
+    animation-delay: calc(0.4s + var(--i) * 0.08s);
+  }
+
+  /* Blinking cursor */
+  .terminal-cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

@@ -2,13 +2,17 @@
 // src/components/CodeLine.astro
 interface Props {
   number: number;
+  tab?: number;
 }
 
-const { number } = Astro.props;
+const { number, tab = 0 } = Astro.props;
 ---
 
 <div class="flex">
-  <span class="mr-4 inline-block w-6 select-none text-right text-secondary/30">
+  <span
+    style={`margin-right: ${tab * 16}px`}
+    class="inline-block w-6 select-none text-right text-secondary/30"
+  >
     {number}
   </span>
   <span><slot /></span>

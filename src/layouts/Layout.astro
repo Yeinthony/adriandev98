@@ -23,13 +23,25 @@ import SocialSidebar from '../components/SocialSidebar.astro';
     <title>AdrianDev.98</title>
   </head>
   <body class="bg-background-primary">
-    <Navbar />
-    <div class="px-16 h-full max-w-7xl mx-auto">
-      <SocialSidebar />
-      <slot />
-    </div>
-    <StatusBar />
-    <Footer />
+    <slot />
+
+    <script>
+      const sections = document.querySelectorAll('.section-reveal');
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    </script>
   </body>
 </html>
 
