@@ -3,11 +3,15 @@ import { Icon } from 'astro-icon/components';
 import AButton from './ui/buttons/AButton.astro';
 
 const navLinks = [
-  { label: 'Inicio', href: '#home', prefix: '00' },
-  { label: 'Proyectos', href: '#works', prefix: '01' },
-  { label: 'Habilidades', href: '#about', prefix: '02' },
-  { label: 'Contacto', href: '#contact', prefix: '03' },
+  { label: 'Inicio', href: '/#home', prefix: '00' },
+  { label: 'Proyectos', href: '/#works', prefix: '01' },
+  { label: 'Habilidades', href: '/#about', prefix: '02' },
+  { label: 'Contacto', href: '/#contact', prefix: '03' },
 ];
+
+const whatsappNumberFormat = '541150627655'
+const whatsappMessage = 'Hola, estuve viendo tu perfil y me gustaría conversar sobre una oportunidad laboral o proyecto. ¿Podemos coordinar?';
+const whatsappLink = `https://wa.me/${whatsappNumberFormat}?text=${encodeURIComponent(whatsappMessage)}`
 ---
 
 <nav
@@ -16,7 +20,7 @@ const navLinks = [
 >
   <div class="mx-auto flex lg:max-w-4xl xl:max-w-6xl items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5">
     <!-- Logo -->
-    <a href="#home" class="group flex items-center gap-2.5 transition-all duration-300">
+    <a href="/" class="group flex items-center gap-2.5 transition-all duration-300">
       <div class="relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 transition-all duration-300 group-hover:border-primary/60 group-hover:bg-primary/15 group-hover:shadow-[0_0_12px_rgba(74,158,255,0.15)]">
         <span class="font-code text-[10px] sm:text-xs font-bold text-primary">{'</>'}</span>
       </div>
@@ -39,7 +43,7 @@ const navLinks = [
           class="nav-link group relative rounded-lg px-3 lg:px-4 py-2 font-code text-[11px] sm:text-xs text-typography-secondary/60 transition-all duration-200 hover:text-typography-primary"
         >
           <!-- Active indicator bar -->
-          <div class="nav-indicator absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 rounded-full bg-primary transition-all duration-300"></div>
+          <div class="nav-indicator absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 rounded-full bg-primary transition-all duration-300"></div>
 
           <span class="nav-prefix inline-flex items-center max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[3ch] group-hover:opacity-100 text-primary/40 align-middle whitespace-nowrap">
             {link.prefix}.
@@ -54,7 +58,14 @@ const navLinks = [
 
     <!-- Right side: status + CTA -->
     <div class="hidden items-center gap-3 md:flex">
-      <AButton href="#contact" size="sm" text="Hablemos" icon="lucide:send" />
+      <AButton 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer" 
+        size="sm" 
+        text="Hablemos" 
+        icon="lucide:send" 
+      />
     </div>
 
     <!-- Mobile menu button -->
@@ -103,7 +114,7 @@ const navLinks = [
     </div>
 
     <div class="mt-3 pt-3 border-t border-border-color/30">
-      <AButton href="#contact" class="mobile-link w-full" block size="sm" text="Hablemos" icon="lucide:send" />
+      <AButton href="/#contact" class="mobile-link w-full" block size="sm" text="Hablemos" icon="lucide:send" />
     </div>
       </div>
     </div>
@@ -111,7 +122,7 @@ const navLinks = [
 </nav>
 
 <!-- Spacer for fixed navbar -->
-<div class="h-[52px] sm:h-[56px]"></div>
+<div class="h-13 sm:h-14"></div>
 
 <style>
   /* Active link styles */
@@ -212,11 +223,18 @@ const navLinks = [
 
   // Active section detection
   const navLinks = document.querySelectorAll('[data-nav-link]');
+
+  function getHash(href: string | null) {
+    if (!href) return null;
+    const hashIndex = href.indexOf('#');
+    return hashIndex !== -1 ? href.slice(hashIndex) : null;
+  }
+
   const sections = Array.from(navLinks)
     .map((link) => {
-      const href = link.getAttribute('href');
-      if (href?.startsWith('#')) {
-        return document.querySelector<HTMLElement>(href);
+      const hash = getHash(link.getAttribute('href'));
+      if (hash) {
+        return document.querySelector<HTMLElement>(hash);
       }
       return null;
     })
@@ -242,9 +260,9 @@ const navLinks = [
     }
 
     navLinks.forEach((link) => {
-      const href = link.getAttribute('href');
+      const hash = getHash(link.getAttribute('href'));
 
-      if (href === currentSection) {
+      if (hash === currentSection) {
         link.classList.add('is-active');
       } else {
         link.classList.remove('is-active');

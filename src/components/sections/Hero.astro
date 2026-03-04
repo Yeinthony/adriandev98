@@ -14,16 +14,146 @@ import Param from '../codeSnippets/Param.astro';
 import StringVal from '../codeSnippets/StringVal.astro';
 
 const techTags = [
-  { name: 'React', icon: 'simple-icons:react', color: '#61dafb', top: '15%', left: 'auto', right: '12%', mTop: '8%', mRight: '8%', delay: '0s' },
-  { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb', top: '35%', left: 'auto', right: '2%', mTop: '25%', mRight: '2%', delay: '0.8s' },
-  { name: 'Vue', icon: 'simple-icons:vuedotjs', color: '#4fc08d', top: 'auto', left: 'auto', right: '8%', bottom: '32%', mRight: '10%', mBottom: '38%', delay: '0.4s' },
-  { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0', top: 'auto', left: 'auto', right: '18%', bottom: '14%', mRight: '20%', mBottom: '20%', delay: '1.2s' },
-  { name: 'Astro', icon: 'simple-icons:astro', color: '#ff5d01', top: '12%', left: '15%', right: 'auto', mTop: '6%', mLeft: '8%', delay: '0.6s' },
-  { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6', top: '32%', left: '3%', right: 'auto', mTop: '24%', mLeft: '2%', delay: '0.3s' },
-  { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4', top: '52%', left: '5%', right: 'auto', mTop: '44%', mLeft: '3%', delay: '0.9s' },
-  { name: 'Expo', icon: 'simple-icons:expo', color: '#d4e4f4', top: 'auto', left: '10%', right: 'auto', bottom: '18%', mLeft: '8%', mBottom: '14%', delay: '1.5s' },
-  { name: 'Zustand', icon: 'devicon:zustand', color: '#d4e4f4', top: '4%', left: '42%', right: 'auto', mTop: '2%', mLeft: '35%', delay: '1.1s' },
-  { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171', top: 'auto', left: '30%', right: 'auto', bottom: '6%', mLeft: '45%', mBottom: '6%', delay: '0.7s' },
+  {
+    name: 'React',
+    icon: 'simple-icons:react',
+    color: '#61dafb',
+    xlTop: '15%',
+    xlRight: '22%',
+    lgTop: '30%',
+    lgRight: '10%',
+    mTop: '18%',
+    mRight: '25%',
+    sTop: '15%',
+    sRight: '26%',
+    delay: '0s'
+  },
+  {
+    name: 'React Native',
+    icon: 'simple-icons:react',
+    color: '#61dafb',
+    xlTop: '35%',
+    xlRight: '4%',
+    lgTop: '45%',
+    lgRight: '-8%',
+    mTop: '38%',
+    mRight: '10%',
+    sTop: '35%',
+    sRight: '12%',
+    delay: '0.8s'
+  },
+  {
+    name: 'Vue',
+    icon: 'simple-icons:vuedotjs',
+    color: '#4fc08d',
+    xlRight: '10%',
+    xlBottom: '32%',
+    lgRight: '8%',
+    lgBottom: '32%',
+    mRight: '20%',
+    mBottom: '32%',
+    sRight: '20%',
+    sBottom: '35%',
+    delay: '0.4s'
+  },
+  {
+    name: 'Vuetify',
+    icon: 'simple-icons:vuetify',
+    color: '#1867c0',
+    xlRight: '20%',
+    xlBottom: '14%',
+    lgRight: '18%',
+    lgBottom: '18%',
+    mRight: '20%',
+    mBottom: '13%',
+    sRight: '23%',
+    sBottom: '15%',
+    delay: '1.2s'
+  },
+  {
+    name: 'Astro',
+    icon: 'simple-icons:astro',
+    color: '#ff5d01',
+    xlTop: '12%',
+    xlLeft: '18%',
+    lgTop: '20%',
+    lgLeft: '20%',
+    mTop: '20%',
+    mLeft: '25%',
+    sTop: '21%',
+    sLeft: '25%',
+    delay: '0.6s'
+  },
+  {
+    name: 'TypeScript',
+    icon: 'simple-icons:typescript',
+    color: '#3178c6',
+    xlTop: '32%',
+    xlLeft: '6%',
+    lgTop: '37%',
+    lgLeft: '0%',
+    mTop: '40%',
+    mLeft: '15%',
+    sTop: '40%',
+    sLeft: '15%',
+    delay: '0.3s'
+  },
+  {
+    name: 'Tailwind',
+    icon: 'simple-icons:tailwindcss',
+    color: '#06b6d4',
+    xlTop: '52%',
+    xlLeft: '3%',
+    lgTop: '55%',
+    lgLeft: '-2%',
+    mTop: '60%',
+    mLeft: '13%',
+    sTop: '60%',
+    sLeft: '15%',
+    delay: '0.9s'
+  },
+  {
+    name: 'Expo',
+    icon: 'simple-icons:expo',
+    color: '#d4e4f4',
+    xlLeft: '8%',
+    xlBottom: '18%',
+    lgLeft: '6%',
+    lgBottom: '22%',
+    mLeft: '22%',
+    mBottom: '10%',
+    sLeft: '20%',
+    sBottom: '12%',
+    delay: '1.5s'
+  },
+  {
+    name: 'Zustand',
+    icon: 'devicon:zustand',
+    color: '#d4e4f4',
+    xlTop: '4%',
+    xlLeft: '42%',
+    lgTop: '15%',
+    lgLeft: '50%',
+    mTop: '4%',
+    mLeft: '40%',
+    sTop: '3%',
+    sLeft: '38%',
+    delay: '1.1s'
+  },
+  {
+    name: 'Pinia',
+    icon: 'simple-icons:pinia',
+    color: '#46b171',
+    xlLeft: '28%',
+    xlBottom: '3%',
+    lgLeft: '30%',
+    lgBottom: '12%',
+    mLeft: '40%',
+    mBottom: '2%',
+    sLeft: '38%',
+    sBottom: '2%',
+    delay: '0.7s'
+  },
 ];
 ---
 
@@ -35,7 +165,7 @@ const techTags = [
   <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #4a9eff 1px, transparent 1px); background-size: 24px 24px;"></div>
 
   <!-- Ambient glow -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04] blur-[120px]" style="background: #4a9eff;"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-150 rounded-full opacity-[0.04] blur-[120px]" style="background: #4a9eff;"></div>
 
   <div class="relative mx-auto lg:max-w-4xl xl:max-w-6xl items-center gap-8 px-4 sm:px-6 sm:gap-10 lg:gap-16 grid lg:grid-cols-2">
     <!-- Left: Text content -->
@@ -109,100 +239,109 @@ const techTags = [
 
       <!-- CTAs -->
       <div class="hero-fade flex flex-wrap items-center gap-3 sm:gap-4" style="--delay: 0.35s;">
-        <AButton href="#works" text="Ver proyectos" variant="gradient" size="sm" icon="lucide:folder-code" />
+        <AButton href="/CV-Adrian-Vargas.pdf" text="Descargar CV" variant="gradient" size="sm" icon="lucide:download" download="CV-Adrian-Vargas.pdf" />
         <AButton href="#contact" text="Contacto" variant="secondary" size="sm" icon="lucide:send" />
-      </div>
-
-      <!-- Quick stats inline -->
-      <div class="hero-fade mt-8 sm:mt-10 flex items-center gap-4 sm:gap-6" style="--delay: 0.4s;">
-        <div class="flex items-center gap-2">
-          <span class="font-code text-base sm:text-lg font-bold text-primary">3+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">años<br/>exp.</span>
-        </div>
-        <div class="h-4 w-px bg-border-color/40"></div>
-        <div class="flex items-center gap-2">
-          <span class="font-code text-base sm:text-lg font-bold text-primary">50+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">proyectos<br/>completados</span>
-        </div>
-        <div class="h-4 w-px bg-border-color/40"></div>
-        <div class="flex items-center gap-2">
-          <span class="font-code text-base sm:text-lg font-bold text-primary">15+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">clientes<br/>felices</span>
-        </div>
       </div>
     </div>
 
     <!-- Right: Blob + floating tech tags -->
-    <div
-      class="order-1 lg:order-2 relative flex items-center justify-center min-h-[260px] sm:min-h-[320px] lg:min-h-[480px]"
-    >
-      <!-- Tech tags -->
-      {techTags.map((tag) => (
-        <div
-          class="tech-tag absolute z-10 flex items-center gap-1 sm:gap-1.5 rounded-lg border border-border-color/50 bg-background-secondary/90 backdrop-blur-sm px-2 py-1 sm:px-2.5 sm:py-1.5 font-code text-[9px] sm:text-[11px] shadow-lg animate-float transition-all duration-300 hover:border-transparent cursor-default group"
-          style={`animation-delay: ${tag.delay}; color: ${tag.color};`}
-          data-pos-top={tag.top}
-          data-pos-left={tag.left}
-          data-pos-right={tag.right}
-          data-pos-bottom={tag.bottom ?? 'auto'}
-          data-m-top={tag.mTop ?? 'auto'}
-          data-m-left={tag.mLeft ?? 'auto'}
-          data-m-right={tag.mRight ?? 'auto'}
-          data-m-bottom={tag.mBottom ?? 'auto'}
-        >
-          <!-- Hover glow -->
-          <div
-            class="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
-            style={`background: radial-gradient(ellipse at center, ${tag.color}15 0%, transparent 70%); border: 1px solid ${tag.color}40;`}
-          ></div>
-          <Icon name={tag.icon} class="relative w-2.5 h-2.5 sm:w-3 sm:h-3 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_currentColor]" />
-          <span class="relative">{tag.name}</span>
-        </div>
-      ))}
-
-      <!-- SVG blob -->
-      <svg
-        id="visual"
-        viewBox="100 0 700 600"
-        class="w-full max-w-[260px] sm:max-w-[320px] lg:max-w-none mx-auto hero-blob"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        version="1.5"
+    <div class="order-1 lg:order-2">
+      <div
+        class="relative flex items-center justify-center min-h-65 sm:min-h-80 lg:min-h-120"
       >
-        <defs>
-          <clipPath id="blob-clip">
+        <!-- Tech tags -->
+        {techTags.map((tag) => (
+          <div
+            class="tech-tag absolute z-10 flex items-center gap-1 sm:gap-1.5 rounded-lg border border-border-color/50 bg-background-secondary/90 backdrop-blur-sm px-2 py-1 sm:px-2.5 sm:py-1.5 font-code text-[9px] sm:text-[11px] shadow-lg animate-float transition-all duration-300 hover:border-transparent cursor-default group"
+            style={`animation-delay: ${tag.delay}; color: ${tag.color};`}
+            data-xl-top={tag.xlTop ?? 'auto'}
+            data-xl-left={tag.xlLeft ?? 'auto'}
+            data-xl-right={tag.xlRight ?? 'auto'}
+            data-xl-bottom={tag.xlBottom ?? 'auto'}
+            data-lg-top={tag.lgTop ?? 'auto'}
+            data-lg-left={tag.lgLeft ?? 'auto'}
+            data-lg-right={tag.lgRight ?? 'auto'}
+            data-lg-bottom={tag.lgBottom ?? 'auto'}
+            data-m-top={tag.mTop ?? 'auto'}
+            data-m-left={tag.mLeft ?? 'auto'}
+            data-m-right={tag.mRight ?? 'auto'}
+            data-m-bottom={tag.mBottom ?? 'auto'}
+            data-s-top={tag.sTop ?? 'auto'}
+            data-s-left={tag.sLeft ?? 'auto'}
+            data-s-right={tag.sRight ?? 'auto'}
+            data-s-bottom={tag.sBottom ?? 'auto'}
+          >
+            <!-- Hover glow -->
+            <div
+              class="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
+              style={`background: radial-gradient(ellipse at center, ${tag.color}15 0%, transparent 70%); border: 1px solid ${tag.color}40;`}
+            ></div>
+            <Icon name={tag.icon} class="relative w-2.5 h-2.5 sm:w-3 sm:h-3 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_currentColor]" />
+            <span class="relative">{tag.name}</span>
+          </div>
+        ))}
+
+        <!-- SVG blob -->
+        <svg
+          id="visual"
+          viewBox="100 0 700 600"
+          class="w-full max-w-65 sm:max-w-[320px] lg:max-w-none mx-auto hero-blob"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.5"
+        >
+          <defs>
+            <clipPath id="blob-clip">
+              <path
+                d="M508.77 289.68 m136.3 -173.5C173.3 -131.5 197.4 -85.3 208.2 -35.1C219 15.1 216.5 69.3 194.7 117.5C172.9 165.7 132 207.8 76.6 241.4C21.2 275 -48.6 300.1 -128.7 295.9C-208.8 291.8 -299.3 258.4 -324.2 196.3C-349.1 134.3 -308.5 43.5 -281.1 -38.8C-253.8 -121.1 -239.7 -195 -195.1 -235.6C-150.4 -276.3 -75.2 -283.6 -12.7 -268.4C49.7 -253.2 99.4 -215.5 136.3 -173.5"
+                transform="translate(508.77 289.68)"></path>
+            </clipPath>
+          </defs>
+
+          <!-- Blob background -->
+          <g transform="translate(508.7694578843243 289.68310701729524)">
             <path
-              d="M508.77 289.68 m136.3 -173.5C173.3 -131.5 197.4 -85.3 208.2 -35.1C219 15.1 216.5 69.3 194.7 117.5C172.9 165.7 132 207.8 76.6 241.4C21.2 275 -48.6 300.1 -128.7 295.9C-208.8 291.8 -299.3 258.4 -324.2 196.3C-349.1 134.3 -308.5 43.5 -281.1 -38.8C-253.8 -121.1 -239.7 -195 -195.1 -235.6C-150.4 -276.3 -75.2 -283.6 -12.7 -268.4C49.7 -253.2 99.4 -215.5 136.3 -173.5"
-              transform="translate(508.77 289.68)"></path>
-          </clipPath>
-        </defs>
+              d="M136.3 -173.5C173.3 -131.5 197.4 -85.3 208.2 -35.1C219 15.1 216.5 69.3 194.7 117.5C172.9 165.7 132 207.8 76.6 241.4C21.2 275 -48.6 300.1 -128.7 295.9C-208.8 291.8 -299.3 258.4 -324.2 196.3C-349.1 134.3 -308.5 43.5 -281.1 -38.8C-253.8 -121.1 -239.7 -195 -195.1 -235.6C-150.4 -276.3 -75.2 -283.6 -12.7 -268.4C49.7 -253.2 99.4 -215.5 136.3 -173.5"
+              fill="#0d1b2a"
+              opacity="1"></path>
+          </g>
 
-        <!-- Blob background -->
-        <g transform="translate(508.7694578843243 289.68310701729524)">
-          <path
-            d="M136.3 -173.5C173.3 -131.5 197.4 -85.3 208.2 -35.1C219 15.1 216.5 69.3 194.7 117.5C172.9 165.7 132 207.8 76.6 241.4C21.2 275 -48.6 300.1 -128.7 295.9C-208.8 291.8 -299.3 258.4 -324.2 196.3C-349.1 134.3 -308.5 43.5 -281.1 -38.8C-253.8 -121.1 -239.7 -195 -195.1 -235.6C-150.4 -276.3 -75.2 -283.6 -12.7 -268.4C49.7 -253.2 99.4 -215.5 136.3 -173.5"
-            fill="#0d1b2a"
-            opacity="1"></path>
-        </g>
-
-        <!-- Photo -->
-        <image
-          href={tuFoto.src}
-          x="150"
-          y="10"
-          width="600"
-          height="600"
-          clip-path="url(#blob-clip)"
-          preserveAspectRatio="xMidYMid slice"
-        />
-      </svg>
-    </div>
+          <!-- Photo -->
+          <image
+            href={tuFoto.src}
+            x="150"
+            y="10"
+            width="600"
+            height="600"
+            clip-path="url(#blob-clip)"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </svg>
+      </div>
+      <!-- Quick stats inline -->
+      <div class="hero-fade mt-8 sm:mt-10 flex justify-center items-center gap-4 sm:gap-6" style="--delay: 0.4s;">
+        <div class="flex items-center gap-2">
+          <span class="font-code text-base sm:text-lg font-bold text-primary">2+</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">años<br/>exp.</span>
+        </div>
+        <div class="h-4 w-px bg-border-color/40"></div>
+        <div class="flex items-center gap-2">
+          <span class="font-code text-base sm:text-lg font-bold text-primary">7+</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">proyectos<br/>completados</span>
+        </div>
+        <div class="h-4 w-px bg-border-color/40"></div>
+        <div class="flex items-center gap-2">
+          <span class="font-code text-base sm:text-lg font-bold text-primary">5+</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">clientes<br/>felices</span>
+        </div>
+      </div>
+     </div>
   </div>
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-fade" style="--delay: 0.6s;">
     <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/30">scroll</span>
-    <div class="w-px h-6 sm:h-8 bg-gradient-to-b from-primary/40 to-transparent scroll-line"></div>
+    <div class="w-px h-6 sm:h-8 bg-linear-to-b from-primary/40 to-transparent scroll-line"></div>
   </div>
 </section>
 
@@ -252,38 +391,68 @@ const techTags = [
 
   /* Tech tag positioning */
   .tech-tag {
-    top: attr(data-m-top);
-    left: attr(data-m-left);
-    right: attr(data-m-right);
-    bottom: attr(data-m-bottom);
+    top: attr(data-s-top);
+    left: attr(data-s-left);
+    right: attr(data-s-right);
+    bottom: attr(data-s-bottom);
+  }
+
+  @media (min-width: 768px) {
+    .tech-tag {
+      top: attr(data-m-top);
+      left: attr(data-m-left);
+      right: attr(data-m-right);
+      bottom: attr(data-m-bottom);
+    }
   }
 
   @media (min-width: 1024px) {
     .tech-tag {
-      top: attr(data-pos-top);
-      left: attr(data-pos-left);
-      right: attr(data-pos-right);
-      bottom: attr(data-pos-bottom);
+      top: attr(data-lg-top);
+      left: attr(data-lg-left);
+      right: attr(data-lg-right);
+      bottom: attr(data-lg-bottom);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .tech-tag {
+      top: attr(data-xl-top);
+      left: attr(data-xl-left);
+      right: attr(data-xl-right);
+      bottom: attr(data-xl-bottom);
     }
   }
 </style>
 
 <script>
   function positionTags() {
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    const isXl = window.matchMedia('(min-width: 1280px)').matches;
+    const isLg = window.matchMedia('(min-width: 1024px)').matches;
+    const isMd = window.matchMedia('(min-width: 768px)').matches;
     const tags = document.querySelectorAll<HTMLElement>('.tech-tag');
 
     tags.forEach((tag) => {
-      if (isDesktop) {
-        tag.style.top = tag.dataset.posTop ?? 'auto';
-        tag.style.left = tag.dataset.posLeft ?? 'auto';
-        tag.style.right = tag.dataset.posRight ?? 'auto';
-        tag.style.bottom = tag.dataset.posBottom ?? 'auto';
-      } else {
+      if (isXl) {
+        tag.style.top = tag.dataset.xlTop ?? 'auto';
+        tag.style.left = tag.dataset.xlLeft ?? 'auto';
+        tag.style.right = tag.dataset.xlRight ?? 'auto';
+        tag.style.bottom = tag.dataset.xlBottom ?? 'auto';
+      } else if (isLg) {
+        tag.style.top = tag.dataset.lgTop ?? 'auto';
+        tag.style.left = tag.dataset.lgLeft ?? 'auto';
+        tag.style.right = tag.dataset.lgRight ?? 'auto';
+        tag.style.bottom = tag.dataset.lgBottom ?? 'auto';
+      } else if (isMd) {
         tag.style.top = tag.dataset.mTop ?? 'auto';
         tag.style.left = tag.dataset.mLeft ?? 'auto';
         tag.style.right = tag.dataset.mRight ?? 'auto';
         tag.style.bottom = tag.dataset.mBottom ?? 'auto';
+      } else {
+        tag.style.top = tag.dataset.sTop ?? 'auto';
+        tag.style.left = tag.dataset.sLeft ?? 'auto';
+        tag.style.right = tag.dataset.sRight ?? 'auto';
+        tag.style.bottom = tag.dataset.sBottom ?? 'auto';
       }
     });
   }

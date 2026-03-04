@@ -15,6 +15,9 @@ interface Props {
   disabled?: boolean;
   id?: string;
   block?: boolean;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
+  download?: string | boolean;
 }
 
 const {
@@ -30,6 +33,9 @@ const {
   disabled = false,
   id,
   block = false,
+  target,
+  rel,
+  download,
 } = Astro.props;
 
 // Variantes de gradiente
@@ -69,6 +75,9 @@ const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
     href ? (
       <a
         href={href}
+        target={target}
+        rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        download={download}
         data-button-id={id}
         class={`animated-button relative ${buttonDisplayClass} p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out ${hoverScale} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
         aria-disabled={disabled}

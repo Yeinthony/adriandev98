@@ -14,91 +14,120 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'EcoTracker',
-    slug: 'eco-tracker',
+    title: 'Listify',
+    slug: 'listify',
     description:
-      'Dashboard en tiempo real para monitorear la huella de carbono con gráficas interactivas e insights accionables.',
+      'App móvil para comparar precios entre comercios, visualizar sucursales cercanas y gestionar listas de compras. Incluye procesamiento y normalización de datos públicos del SEPA.',
     tags: [
-      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
-      { name: 'D3.js', icon: 'simple-icons:d3dotjs', color: '#f9a03c' },
-      { name: 'Node.js', icon: 'simple-icons:nodedotjs', color: '#5fa04e' },
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff' },
+      { name: 'Zustand', icon: 'devicon:zustand', color: '#d4e4f4' },
+      { name: 'NestJS', icon: 'simple-icons:nestjs', color: '#E0234E' },
       { name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169e1' },
     ],
-    accent: '#28c840',
-    liveUrl: '#',
-    repoUrl: '#',
+    accent: '#61dafb',
+    liveUrl: '',
+    repoUrl: 'https://github.com/Yeinthony/listify',
     featured: true,
   },
   {
-    title: 'PixelBrew',
-    slug: 'pixel-brew',
+    title: 'Superemesas',
+    slug: 'superemesas',
     description:
-      'Design system y librería de componentes con enfoque accessibility-first. 40+ componentes UI reutilizables.',
+      'Plataforma web para el envío de remesas con interfaces modernas y responsivas, garantizando una experiencia de usuario fluida y accesible.',
     tags: [
-      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6' },
-      { name: 'Storybook', icon: 'simple-icons:storybook', color: '#ff4785' },
-      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4' },
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0' },
     ],
-    accent: '#4a9eff',
-    liveUrl: '#',
-    repoUrl: '#',
+    accent: '#4fc08d',
+    liveUrl: 'https://www.superemesas.com/',
+    repoUrl: '',
+  },
+  {
+    title: 'SIGMIG',
+    slug: 'sigmig',
+    description:
+      'Sistema administrativo multiempresa para gestión integral de procesos, control e inventario. Soporta múltiples organizaciones con configuraciones independientes y expansión modular. En producción.',
+    tags: [
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0' },
+    ],
+    accent: '#1867c0',
+    liveUrl: '',
+    repoUrl: '',
     featured: true,
   },
   {
-    title: 'SoundScape',
-    slug: 'sound-scape',
+    title: 'GoDrive',
+    slug: 'godrive',
     description:
-      'Plataforma de descubrimiento musical con recomendaciones AI y un reproductor de audio inmersivo.',
+      'Plataforma web de reserva y gestión de vehículos con módulos de administración de flota, control de disponibilidad y flujo de reservas.',
     tags: [
-      { name: 'Next.js', icon: 'simple-icons:nextdotjs', color: '#ffffff' },
-      { name: 'Spotify API', icon: 'simple-icons:spotify', color: '#1db954' },
-      { name: 'Framer', icon: 'simple-icons:framer', color: '#0055ff' },
+      { name: 'Nuxt', icon: 'simple-icons:nuxtdotjs', color: '#00dc82' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0' },
     ],
-    accent: '#c678dd',
-    liveUrl: '#',
-    repoUrl: '#',
+    accent: '#00dc82',
+    liveUrl: '',
+    repoUrl: '',
   },
   {
-    title: 'TaskFlow',
-    slug: 'task-flow',
+    title: 'Panel Admin – Isipay',
+    slug: 'isipay-admin',
     description:
-      'Herramienta de gestión de proyectos estilo Kanban con colaboración en tiempo real y drag-and-drop.',
+      'Panel administrativo fintech para gestión de criptomonedas, tasas, usuarios y configuraciones críticas. Migrado de Next.js a Vue 3.',
     tags: [
-      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
-      { name: 'Socket.io', icon: 'simple-icons:socketdotio', color: '#010101' },
-      { name: 'Express', icon: 'simple-icons:express', color: '#ffffff' },
-      { name: 'MongoDB', icon: 'simple-icons:mongodb', color: '#47a248' },
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0' },
     ],
     accent: '#e5c07b',
-    liveUrl: '#',
-    repoUrl: '#',
+    liveUrl: '',
+    repoUrl: '',
   },
   {
-    title: 'DevBlog',
-    slug: 'dev-blog',
+    title: 'Iisipay – Exchange',
+    slug: 'iisipay-exchange',
     description:
-      'Blog para desarrolladores con Markdown, syntax highlighting, dark mode y generación estática ultra rápida.',
+      'Aplicación móvil para exchange de criptomonedas. Estabilización del producto, corrección de bugs críticos y reestructuración del código.',
     tags: [
-      { name: 'Next.js', icon: 'simple-icons:nextdotjs', color: '#ffffff' },
-      { name: 'MDX', icon: 'simple-icons:mdx', color: '#1b1f24' },
-      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4' },
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff' },
+      { name: 'Zustand', icon: 'devicon:zustand', color: '#d4e4f4' },
     ],
-    accent: '#61afef',
-    liveUrl: '#',
-    repoUrl: '#',
+    accent: '#c678dd',
+    liveUrl: '',
+    repoUrl: '',
   },
   {
-    title: 'FormCraft',
-    slug: 'form-craft',
+    title: 'XCore – Panel Admin',
+    slug: 'xcore-admin',
     description:
-      'Constructor de formularios dinámicos con lógica condicional, reglas de validación y outputs temáticos.',
+      'Estructuración y desarrollo del panel administrativo, definiendo la base arquitectónica con interfaces responsivas.',
     tags: [
-      { name: 'React', icon: 'simple-icons:react', color: '#61dafb' },
-      { name: 'Zod', icon: 'simple-icons:zod', color: '#3068b7' },
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0' },
     ],
     accent: '#98c379',
-    liveUrl: '#',
-    repoUrl: '#',
+    liveUrl: '',
+    repoUrl: '',
+  },
+  {
+    title: 'XCore – App Móvil',
+    slug: 'xcore-mobile',
+    description:
+      'Diseño y desarrollo inicial de la app móvil, estableciendo la estructura base y optimizando rendimiento multiplataforma.',
+    tags: [
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff' },
+      { name: 'Zustand', icon: 'devicon:zustand', color: '#d4e4f4' },
+    ],
+    accent: '#61afef',
+    liveUrl: '',
+    repoUrl: '',
   },
 ];
 
@@ -171,12 +200,12 @@ const rest = projects.filter((p) => !p.featured);
               <!-- Title with accent line -->
               <div class="flex items-start gap-3 mb-3">
                 <div
-                  class="mt-1 h-5 w-1 rounded-full shrink-0 transition-all duration-300 group-hover:h-7"
+                  class="mt-1 h-5 w-1 rounded-full shrink-0 transition-all duration-300"
                   style={`background: ${project.accent};`}
                 ></div>
                 <div>
                   <h3 class="text-lg sm:text-xl font-bold text-typography-primary group-hover:text-white transition-colors duration-300">
-                    {project.title}
+                    <a href={`/projects/${project.slug}`} class="stretched-link">{project.title}</a>
                   </h3>
                 </div>
               </div>
@@ -195,25 +224,10 @@ const rest = projects.filter((p) => !p.featured);
                 ))}
               </div>
 
-              <!-- Actions -->
-              <div class="flex items-center gap-4 pl-4">
-                <a
-                  href={project.liveUrl}
-                  class="group/link flex items-center gap-1.5 font-code text-[10px] sm:text-xs transition-colors duration-200"
-                  style={`color: ${project.accent};`}
-                  aria-label={`Ver demo de ${project.title}`}
-                >
-                  <Icon name="lucide:external-link" class="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-                  Live Demo
-                </a>
-                <a
-                  href={project.repoUrl}
-                  class="group/link flex items-center gap-1.5 font-code text-[10px] sm:text-xs text-typography-secondary/40 transition-colors duration-200 hover:text-typography-secondary"
-                  aria-label={`Ver código de ${project.title}`}
-                >
-                  <Icon name="simple-icons:github" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  Source
-                </a>
+              <!-- View details hint -->
+              <div class="flex items-center gap-1.5 pl-4 font-code text-[10px] sm:text-xs text-typography-secondary/30 transition-colors duration-200 group-hover:text-primary/60">
+                <Icon name="lucide:arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                Ver detalles
               </div>
             </div>
           </article>
@@ -253,7 +267,7 @@ const rest = projects.filter((p) => !p.featured);
                 style={`background: ${project.accent};`}
               ></div>
               <h3 class="text-sm sm:text-base font-bold text-typography-primary group-hover:text-white transition-colors duration-300 truncate">
-                {project.title}
+                <a href={`/projects/${project.slug}`} class="stretched-link">{project.title}</a>
               </h3>
             </div>
 
@@ -273,25 +287,10 @@ const rest = projects.filter((p) => !p.featured);
               ))}
             </div>
 
-            <!-- Actions compact -->
-            <div class="flex items-center gap-3">
-              <a
-                href={project.liveUrl}
-                class="flex items-center gap-1 font-code text-[9px] sm:text-[10px] transition-colors duration-200"
-                style={`color: ${project.accent};`}
-                aria-label={`Ver demo de ${project.title}`}
-              >
-                <Icon name="lucide:external-link" class="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                Demo
-              </a>
-              <a
-                href={project.repoUrl}
-                class="flex items-center gap-1 font-code text-[9px] sm:text-[10px] text-typography-secondary/30 transition-colors duration-200 hover:text-typography-secondary"
-                aria-label={`Ver código de ${project.title}`}
-              >
-                <Icon name="simple-icons:github" class="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                Source
-              </a>
+            <!-- View details hint -->
+            <div class="flex items-center gap-1 font-code text-[9px] sm:text-[10px] text-typography-secondary/30 transition-colors duration-200 group-hover:text-primary/60">
+              <Icon name="lucide:arrow-right" class="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-200 group-hover:translate-x-1" />
+              Ver detalles
             </div>
           </div>
         </article>
@@ -309,7 +308,7 @@ const rest = projects.filter((p) => !p.featured);
         </div>
         <div class="flex items-center gap-1.5">
           <span class="text-success text-[10px]">●</span>
-          <span class="text-typography-secondary/30">all repos public</span>
+          <span class="text-typography-secondary/30">up to date</span>
         </div>
       </div>
     </div>
@@ -331,6 +330,18 @@ const rest = projects.filter((p) => !p.featured);
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .stretched-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .stretched-link {
+    color: inherit;
+    text-decoration: none;
   }
 
   .project-card:hover [data-icon] {

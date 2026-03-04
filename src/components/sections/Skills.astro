@@ -27,12 +27,15 @@ const skillCategories: SkillCategory[] = [
     title: 'Frontend',
     prefix: '@frontend',
     skills: [
+      { name: 'HTML / CSS', icon: 'simple-icons:html5', color: '#e34f26', exp: '4 años' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6', exp: '1 año' },
       { name: 'React', icon: 'simple-icons:react', color: '#61dafb', exp: '3 años' },
       { name: 'Vue', icon: 'simple-icons:vuedotjs', color: '#4fc08d', exp: '2 años' },
-      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6', exp: '3 años' },
-      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4', exp: '3 años' },
       { name: 'Astro', icon: 'simple-icons:astro', color: '#ff5d01', exp: '1 año' },
-      { name: 'HTML / CSS', icon: 'simple-icons:html5', color: '#e34f26', exp: '4 años' },
+      { name: 'Tailwind', icon: 'simple-icons:tailwindcss', color: '#06b6d4', exp: '3 años' },
+      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0', exp: '2 años' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171', exp: '2 años' },
+      { name: 'Zustand', icon: 'devicon:zustand', color: '#d4e4f4', exp: '1 año' },
     ],
   },
   {
@@ -41,7 +44,7 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb', exp: '2 años' },
       { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff', exp: '2 años' },
-      { name: 'Vuetify', icon: 'simple-icons:vuetify', color: '#1867c0', exp: '1 año' },
+      { name: 'Capacitor', icon: 'simple-icons:capacitor', color: '#119EFF', exp: '2 años' },
     ],
   },
   {
@@ -51,8 +54,10 @@ const skillCategories: SkillCategory[] = [
       { name: 'Git', icon: 'simple-icons:git', color: '#f05032', exp: '3 años' },
       { name: 'GitHub', icon: 'simple-icons:github', color: '#ffffff', exp: '3 años' },
       { name: 'VS Code', icon: 'simple-icons:visualstudiocode', color: '#007acc', exp: '4 años' },
-      { name: 'Figma', icon: 'simple-icons:figma', color: '#f24e1e', exp: '2 años' },
       { name: 'Vite', icon: 'simple-icons:vite', color: '#646cff', exp: '2 años' },
+      { name: 'Firebase', icon: 'simple-icons:firebase', color: '#DD2C00', exp: '1 año' },
+      { name: 'Google Cloud', icon: 'simple-icons:googlecloud', color: '#4285F4', exp: '1 año' },
+      { name: 'Claude Code', icon: 'simple-icons:anthropic', color: '#d4a574', exp: '3 meses' },
     ],
   },
   {
@@ -61,17 +66,18 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Node.js', icon: 'simple-icons:nodedotjs', color: '#5fa04e', exp: '2 años' },
       { name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169e1', exp: '1 año' },
-      { name: 'Docker', icon: 'simple-icons:docker', color: '#2496ed', exp: '1 año' },
-      { name: 'REST APIs', icon: 'lucide:globe', color: '#4a9eff', exp: '3 años' },
+      { name: 'Express.js', icon: 'simple-icons:express', color: '#ffffff', exp: '2 años' },
+      { name: 'NestJS', icon: 'simple-icons:nestjs', color: '#E0234E', exp: '1 año' },
+      { name: 'REST APIs', icon: 'lucide:globe', color: '#4a9eff', exp: '2 años' },
     ],
   },
 ];
 
 const stats = [
-  { value: '50+', label: 'Proyectos', icon: 'lucide:folder-code' },
-  { value: '3+', label: 'Años exp.', icon: 'lucide:calendar' },
+  { value: '7+', label: 'Proyectos', icon: 'lucide:folder-code' },
+  { value: '2+', label: 'Años exp.', icon: 'lucide:calendar' },
   { value: '1.2k', label: 'Commits', icon: 'lucide:git-commit-horizontal' },
-  { value: '15+', label: 'Clientes', icon: 'lucide:users' },
+  { value: '5+', label: 'Clientes', icon: 'lucide:users' },
 ];
 
 const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0);
@@ -85,7 +91,7 @@ const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length
     <!-- Section header -->
     <div class="mb-10 sm:mb-16">
       <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
-        {'// 02. Skills & Expertise'}
+        {'// 02. Habilidades & Experiencia'}
       </span>
       <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary">Tech Stack</h2>
       <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
@@ -157,7 +163,7 @@ const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length
               style={`--i: ${i}`}
             >
               <div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg bg-primary/8 transition-colors duration-300 group-hover:bg-primary/15">
-                <Icon name={stat.icon} class="w-4 h-4 sm:w-[18px] sm:h-[18px] text-primary/60 group-hover:text-primary transition-colors duration-300" />
+                <Icon name={stat.icon} class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-primary/60 group-hover:text-primary transition-colors duration-300" />
               </div>
               <div>
                 <div class="text-lg sm:text-xl font-bold text-primary font-code leading-none">
