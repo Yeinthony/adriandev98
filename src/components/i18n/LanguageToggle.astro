@@ -1,0 +1,31 @@
+---
+// Píldora ES | EN. El estado activo y el cableado los maneja src/scripts/i18n.ts
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'lang-toggle inline-flex items-center rounded-lg border border-border-color/50 bg-background-secondary/50 p-0.5 font-code text-[10px] sm:text-xs',
+    className,
+  ]}
+  role="group"
+  aria-label="Language"
+>
+  <button
+    type="button"
+    data-lang-set="es"
+    class="lang-btn rounded-md px-2 py-1 text-typography-secondary/50 transition-colors duration-200 hover:text-typography-primary"
+  >
+    ES
+  </button>
+  <button
+    type="button"
+    data-lang-set="en"
+    class="lang-btn rounded-md px-2 py-1 text-typography-secondary/50 transition-colors duration-200 hover:text-typography-primary"
+  >
+    EN
+  </button>
+</div>

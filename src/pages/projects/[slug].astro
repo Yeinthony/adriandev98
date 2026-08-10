@@ -3,29 +3,21 @@ import { getCollection, render } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
-    params: { slug: project.data.slug },
-    props: { project },
-  }));
+  const all = await getCollection('projects');
+  // Las entradas en inglés usan el slug con sufijo "-en" (repomap-en)
+  const esEntries = all.filter((entry) => !entry.id.endsWith('-en'));
+  return esEntries.map((es) => {
+    const en = all.find((entry) => entry.id === `${es.id}-en`) ?? es;
+    return { params: { slug: es.data.slug }, props: { es, en } };
+  });
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
-const { title, description, accent, tags, liveUrl, repoUrl, role, challenges, learnings, contributions } = project.data;
+const { es, en } = Astro.props;
+const { Content: EsContent } = await render(es);
+const { Content: EnContent } = await render(en);
 ---
 
-<ProjectLayout
-  title={title}
-  description={description}
-  accent={accent}
-  tags={tags}
-  liveUrl={liveUrl}
-  repoUrl={repoUrl}
-  role={role}
-  challenges={challenges}
-  learnings={learnings}
-  contributions={contributions}
->
-  <Content />
+<ProjectLayout es={es.data} en={en.data}>
+  <EsContent slot="es" />
+  <EnContent slot="en" />
 </ProjectLayout>

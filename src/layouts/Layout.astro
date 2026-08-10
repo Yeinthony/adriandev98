@@ -7,10 +7,19 @@ import SocialSidebar from '../components/SocialSidebar.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es" data-lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <script is:inline>
+      (function () {
+        try {
+          var l = localStorage.getItem('lang') === 'en' ? 'en' : 'es';
+          document.documentElement.dataset.lang = l;
+          document.documentElement.lang = l;
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +35,8 @@ import SocialSidebar from '../components/SocialSidebar.astro';
     <slot />
 
     <script>
+      import '../scripts/i18n';
+
       const sections = document.querySelectorAll('.section-reveal');
 
       const observer = new IntersectionObserver(

@@ -1,0 +1,342 @@
+---
+import { Icon } from 'astro-icon/components';
+import T from '../i18n/T.astro';
+
+interface Experience {
+  role: string;
+  company: string;
+  companyType: string; // 'Jornada completa'
+  companyTypeEn: string;
+  logo: string; // ruta en public, ej: '/logos/smartjob.svg'
+  initials: string; // fallback si no carga el logo
+  slug: string; // usado en el mini-header del terminal
+  hash: string; // hash de commit decorativo
+  period: string;
+  periodEn: string;
+  duration: string;
+  durationEn: string;
+  location: string;
+  current?: boolean;
+  highlights: string[];
+  highlightsEn: string[];
+  tags: { name: string; icon: string; color: string }[];
+  accent: string;
+}
+
+// Datos basados en el perfil de LinkedIn del usuario.
+// (los bullets de SmartJob son un placeholder editable — LinkedIn no tenía descripción)
+const experiences: Experience[] = [
+  {
+    role: 'Frontend Developer',
+    company: 'SmartJob',
+    companyType: 'Jornada completa',
+    companyTypeEn: 'Full-time',
+    logo: '/logos/smartjob.svg',
+    initials: 'SM',
+    slug: 'smartjob',
+    hash: 'f3a9c21',
+    period: 'mar. 2026 — actualidad',
+    periodEn: 'Mar 2026 — present',
+    duration: '6 meses',
+    durationEn: '6 months',
+    location: 'Argentina',
+    current: true,
+    highlights: [
+      'Desarrollo de interfaces frontend robustas y tipadas con TypeScript y JavaScript.',
+      'Construcción de componentes reutilizables enfocados en rendimiento y experiencia de usuario.',
+    ],
+    highlightsEn: [
+      'Building robust, strongly-typed frontend interfaces with TypeScript and JavaScript.',
+      'Crafting reusable components focused on performance and user experience.',
+    ],
+    tags: [
+      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6' },
+      { name: 'JavaScript', icon: 'simple-icons:javascript', color: '#f7df1e' },
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss', color: '#38bdf8' },
+    ],
+    accent: '#f6a623',
+  },
+  {
+    role: 'Frontend Developer',
+    company: 'Soluciones Tecnocam C.A.',
+    companyType: 'Jornada completa',
+    companyTypeEn: 'Full-time',
+    logo: '/logos/tecnocam.png',
+    initials: 'TC',
+    slug: 'tecnocam',
+    hash: 'b7d0e48',
+    period: 'oct. 2023 — actualidad',
+    periodEn: 'Oct 2023 — present',
+    duration: '2 años 11 meses',
+    durationEn: '2 yrs 11 mos',
+    location: 'Venezuela',
+    highlights: [
+      'Desarrollo de páginas web y aplicaciones móviles multiplataforma con Vue 3 y React Native.',
+      'Creación de interfaces de usuario optimizadas, accesibles y totalmente responsivas.',
+      'Participación en productos como Superemesas, SIGMIG y GoDrive, desde la arquitectura hasta producción.',
+    ],
+    highlightsEn: [
+      'Development of web pages and cross-platform mobile apps with Vue 3 and React Native.',
+      'Building optimized, accessible and fully responsive user interfaces.',
+      'Contributing to products like Superemesas, SIGMIG and GoDrive, from architecture to production.',
+    ],
+    tags: [
+      { name: 'Vue 3', icon: 'simple-icons:vuedotjs', color: '#4fc08d' },
+      { name: 'React Native', icon: 'simple-icons:react', color: '#61dafb' },
+      { name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss', color: '#38bdf8' },
+      { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178c6' },
+      { name: 'Pinia', icon: 'simple-icons:pinia', color: '#46b171' },
+      { name: 'Expo', icon: 'simple-icons:expo', color: '#ffffff' },
+    ],
+    accent: '#3b82f6',
+  },
+];
+---
+
+<section id="experience" class="section-reveal relative py-20 sm:py-28 overflow-hidden">
+  <!-- Background grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #4a9eff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="relative mx-auto lg:max-w-4xl xl:max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-10 sm:mb-16">
+      <div class="flex items-end justify-between">
+        <div>
+          <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
+            {'// 01. '}<T es="Trayectoria profesional" en="Professional journey" />
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary"><T es="Experiencia" en="Experience" /></h2>
+        </div>
+        <div class="hidden font-code text-[10px] sm:text-xs text-typography-secondary/30 md:block">
+          <span class="text-success">$</span> git log <span class="text-typography-secondary/50">--author="Yeinthony"</span>
+        </div>
+      </div>
+      <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
+        <span class="text-typography-secondary/40">on branch</span>{' '}
+        <span class="text-primary">career</span>{' '}
+        <span class="text-typography-secondary/40">·</span>{' '}
+        <span class="text-typography-secondary/60">{experiences.length} commits</span>
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Git graph rail -->
+      <div class="absolute left-[15px] sm:left-[17px] top-4 bottom-4 w-px bg-gradient-to-b from-border-color/20 via-border-color/60 to-border-color/20"></div>
+
+      <div class="flex flex-col gap-5 sm:gap-7">
+        {experiences.map((exp, index) => (
+          <div class="relative pl-10 sm:pl-14" style={`--i: ${index};`}>
+            <!-- Commit node -->
+            <div class="absolute left-0 top-5 flex h-[31px] w-[31px] sm:h-[35px] sm:w-[35px] items-center justify-center">
+              {exp.current && (
+                <span
+                  class="node-ping absolute h-4 w-4 rounded-full"
+                  style={`background: ${exp.accent};`}
+                ></span>
+              )}
+              <span
+                class="node-dot relative h-3.5 w-3.5 rounded-full ring-4 ring-background-primary"
+                style={`background: ${exp.accent}; box-shadow: 0 0 10px ${exp.accent};`}
+              ></span>
+            </div>
+
+            <article
+              class:list={[
+                'exp-card group relative overflow-hidden rounded-xl border border-border-color/60 bg-background-secondary transition-all duration-300 hover:border-transparent',
+                exp.current && 'is-current',
+              ]}
+              style={`--i: ${index}; --accent: ${exp.accent};`}
+            >
+              <!-- Hover glow -->
+              <div
+                class="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
+                style={`background: radial-gradient(ellipse at top left, ${exp.accent}0d 0%, transparent 55%); border: 1px solid ${exp.accent}30;`}
+              ></div>
+
+              <!-- Terminal header -->
+              <div class="relative flex items-center justify-between border-b border-border-color/40 px-4 sm:px-5 py-2.5">
+                <div class="flex items-center gap-2">
+                  <div class="flex gap-1.5">
+                    <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-success/80"></span>
+                  </div>
+                  <span class="font-code text-[10px] sm:text-xs text-typography-secondary/40">
+                    commit <span class="text-typography-secondary/60">{exp.hash}</span>
+                  </span>
+                </div>
+                {exp.current && (
+                  <div
+                    class="flex items-center gap-1.5 rounded-full border px-2.5 py-0.5"
+                    style={`border-color: ${exp.accent}55; background: ${exp.accent}18; color: ${exp.accent};`}
+                  >
+                    <span class="relative flex h-1.5 w-1.5">
+                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={`background: ${exp.accent};`}></span>
+                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full" style={`background: ${exp.accent};`}></span>
+                    </span>
+                    <span class="font-code text-[9px] sm:text-[10px] font-semibold tracking-wide uppercase"><T es="Actualmente" en="Currently" /></span>
+                  </div>
+                )}
+              </div>
+
+              <!-- Editorial two-column body -->
+              <div class="relative grid sm:grid-cols-[220px_1fr]">
+                <!-- Meta rail -->
+                <div class="relative flex flex-col items-center gap-4 border-b sm:border-b-0 sm:border-r border-border-color/40 p-5 text-center sm:justify-center">
+                  <!-- Logo -->
+                  <div class="flex h-20 w-full sm:h-24 items-center justify-center overflow-hidden rounded-2xl border border-border-color/60 bg-background-primary/80 p-3">
+                    <img
+                      src={exp.logo}
+                      alt={`Logo ${exp.company}`}
+                      class="h-full w-full object-contain"
+                      loading="lazy"
+                      onerror="this.style.display='none'; this.parentElement.querySelector('[data-fallback]').style.display='flex';"
+                    />
+                    <span
+                      data-fallback
+                      class="hidden h-full w-full items-center justify-center font-code text-2xl font-bold"
+                      style={`color: ${exp.accent};`}
+                    >
+                      {exp.initials}
+                    </span>
+                  </div>
+
+                  <!-- Company -->
+                  <div class="flex flex-col items-center gap-0.5">
+                    <p class="text-sm font-bold text-typography-primary leading-snug text-balance">{exp.company}</p>
+                    <p class="font-code text-[10px] text-typography-secondary/40"><T es={exp.companyType} en={exp.companyTypeEn} /></p>
+                  </div>
+
+                  <!-- Divider -->
+                  <div class="h-px w-10 bg-border-color/60"></div>
+
+                  <!-- Meta list -->
+                  <div class="flex flex-col items-center gap-2 font-code text-[10px] sm:text-[11px] text-typography-secondary/50">
+                    <span class="inline-flex items-center gap-1.5">
+                      <Icon name="lucide:map-pin" class="w-3 h-3 text-typography-secondary/40" />
+                      {exp.location} <span class="text-typography-secondary/30">· <T es="Remoto" en="Remote" /></span>
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 whitespace-nowrap">
+                      <Icon name="lucide:calendar" class="w-3 h-3 text-typography-secondary/40" />
+                      <T es={exp.period} en={exp.periodEn} />
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5"
+                      style={`border-color: ${exp.accent}40; color: ${exp.accent}; background: ${exp.accent}0f;`}
+                    >
+                      <Icon name="lucide:clock" class="w-2.5 h-2.5" />
+                      <T es={exp.duration} en={exp.durationEn} />
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-4 sm:p-6">
+                  <h3 class="text-lg sm:text-xl font-bold text-typography-primary group-hover:text-white transition-colors duration-300">
+                    {exp.role}
+                  </h3>
+                  <p class="mt-1 font-code text-xs text-typography-secondary/50">
+                    <span style={`color: ${exp.accent};`}>function</span> {exp.role.replace(/\s+/g, '')}
+                    <span class="text-typography-secondary/40">()</span>
+                  </p>
+
+                  <ul class="mt-4 flex flex-col gap-2.5">
+                    {exp.highlights.map((item, hi) => (
+                      <li class="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed text-typography-secondary/65">
+                        <Icon
+                          name="lucide:git-commit-horizontal"
+                          class="mt-0.5 w-3.5 h-3.5 shrink-0 text-primary/50"
+                        />
+                        <span><T es={item} en={exp.highlightsEn[hi]} /></span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div class="mt-5 flex flex-wrap gap-1.5 sm:gap-2">
+                    {exp.tags.map((tag) => (
+                      <span class="inline-flex items-center gap-1 sm:gap-1.5 rounded-md border border-border-color/40 bg-background-primary/50 px-2 py-0.5 sm:px-2.5 sm:py-1 font-code text-[9px] sm:text-[11px] text-typography-secondary/60 transition-colors duration-200 hover:border-border-color hover:text-typography-secondary">
+                        <Icon name={tag.icon} class="w-2.5 h-2.5 sm:w-3 sm:h-3" style={`color: ${tag.color};`} />
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Terminal footer -->
+    <div class="mt-5 sm:mt-7 rounded-xl border border-border-color/40 bg-background-secondary/50 px-3 sm:px-4 py-2.5 sm:py-3">
+      <div class="flex items-center justify-between font-code text-[10px] sm:text-xs">
+        <div class="flex items-center gap-2">
+          <span class="text-success">$</span>
+          <span class="text-typography-secondary/40">git status</span>
+          <span class="text-typography-secondary/30">—</span>
+          <span class="text-primary">{experiences.length} positions</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-success text-[10px]">●</span>
+          <span class="text-typography-secondary/30">available for work</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-card {
+    animation: exp-in 0.45s ease-out both;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+
+  @keyframes exp-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .node-dot {
+    animation: node-pop 0.45s ease-out both;
+    animation-delay: calc(var(--i) * 0.1s + 0.1s);
+  }
+
+  @keyframes node-pop {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .node-ping {
+    animation: node-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes node-ping {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    75%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  .exp-card:hover [data-icon] {
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+</style>

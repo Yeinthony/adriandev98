@@ -8,6 +8,7 @@ import FuncName from '../codeSnippets/FuncName.astro';
 import Keyword from '../codeSnippets/Keyword.astro';
 import Param from '../codeSnippets/Param.astro';
 import StringVal from '../codeSnippets/StringVal.astro';
+import T from '../i18n/T.astro';
 
 interface Skill {
   name: string;
@@ -74,13 +75,23 @@ const skillCategories: SkillCategory[] = [
 ];
 
 const stats = [
-  { value: '7+', label: 'Proyectos', icon: 'lucide:folder-code' },
-  { value: '2+', label: 'Años exp.', icon: 'lucide:calendar' },
-  { value: '1.2k', label: 'Commits', icon: 'lucide:git-commit-horizontal' },
-  { value: '5+', label: 'Clientes', icon: 'lucide:users' },
+  { value: '7+', label: 'Proyectos', labelEn: 'Projects', icon: 'lucide:folder-code' },
+  { value: '2+', label: 'Años exp.', labelEn: 'Years exp.', icon: 'lucide:calendar' },
+  { value: '1.2k', label: 'Commits', labelEn: 'Commits', icon: 'lucide:git-commit-horizontal' },
+  { value: '5+', label: 'Clientes', labelEn: 'Clients', icon: 'lucide:users' },
 ];
 
 const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0);
+
+// Traduce las duraciones de experiencia ("3 años", "2 meses") al inglés.
+function expEn(exp: string): string {
+  const m = exp.match(/^(\d+)\s+(años?|meses?|mes)$/);
+  if (!m) return exp;
+  const n = m[1];
+  const isYear = m[2].startsWith('año');
+  const unit = isYear ? (n === '1' ? 'yr' : 'yrs') : n === '1' ? 'mo' : 'mos';
+  return `${n} ${unit}`;
+}
 ---
 
 <section id="about" class="section-reveal relative py-20 sm:py-28 overflow-hidden">
@@ -91,7 +102,7 @@ const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length
     <!-- Section header -->
     <div class="mb-10 sm:mb-16">
       <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
-        {'// 02. Habilidades & Experiencia'}
+        {'// 03. '}<T es="Habilidades & Experiencia" en="Skills & Experience" />
       </span>
       <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary">Tech Stack</h2>
       <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
@@ -143,7 +154,7 @@ const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length
                       class="font-code text-[8px] sm:text-[9px] opacity-40 group-hover:opacity-80 transition-opacity duration-300"
                       style={`color: ${skill.color};`}
                     >
-                      {skill.exp}
+                      <T es={skill.exp} en={expEn(skill.exp)} />
                     </span>
                   </div>
                 </div>
@@ -170,7 +181,7 @@ const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length
                   {stat.value}
                 </div>
                 <div class="font-code text-[9px] sm:text-[10px] text-typography-secondary/50 mt-0.5">
-                  {stat.label}
+                  <T es={stat.label} en={stat.labelEn} />
                 </div>
               </div>
             </div>

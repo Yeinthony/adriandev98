@@ -3,8 +3,9 @@ import Layout from './Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Icon } from 'astro-icon/components';
+import T from '../components/i18n/T.astro';
 
-interface Props {
+interface ProjectData {
   title: string;
   description: string;
   accent: string;
@@ -15,20 +16,17 @@ interface Props {
   challenges?: string[];
   learnings?: string[];
   contributions?: string[];
+  stats?: { label: string; value: string }[];
 }
 
-const {
-  title,
-  description,
-  accent,
-  tags,
-  liveUrl,
-  repoUrl,
-  role,
-  challenges,
-  learnings,
-  contributions,
-} = Astro.props;
+interface Props {
+  es: ProjectData;
+  en: ProjectData;
+}
+
+const { es, en } = Astro.props;
+// Campos compartidos entre idiomas
+const { title, accent, tags, liveUrl, repoUrl, stats } = es;
 ---
 
 <Layout>
@@ -76,14 +74,16 @@ const {
               ></div>
               <div>
                 <h1 class="text-2xl sm:text-4xl font-bold text-typography-primary">{title}</h1>
-                {role && (
-                  <p class="mt-2 font-code text-xs sm:text-sm" style={`color: ${accent};`}>{role}</p>
+                {es.role && (
+                  <p class="mt-2 font-code text-xs sm:text-sm" style={`color: ${accent};`}>
+                    <T es={es.role} en={en.role ?? es.role} />
+                  </p>
                 )}
               </div>
             </div>
 
             <p class="text-sm sm:text-base leading-relaxed text-typography-secondary/60 pl-[18px] sm:pl-[22px] max-w-2xl">
-              {description}
+              <T es={es.description} en={en.description} />
             </p>
 
             <!-- Tags -->
@@ -123,7 +123,7 @@ const {
               )}
               {!liveUrl && !repoUrl && (
                 <span class="font-code text-xs text-typography-secondary/30">
-                  Proyecto privado
+                  <T es="Proyecto privado" en="Private project" />
                 </span>
               )}
             </div>
@@ -131,54 +131,73 @@ const {
         </div>
       </header>
 
+      <!-- Stats band -->
+      {stats && stats.length > 0 && (
+        <div class="mb-10 sm:mb-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div class="rounded-xl border border-border-color/60 bg-background-secondary px-4 py-4 sm:px-5 sm:py-5">
+              <div
+                class="font-code text-xl sm:text-2xl font-bold"
+                style={`color: ${accent};`}
+              >
+                {stat.value}
+              </div>
+              <div class="mt-1 font-code text-[10px] sm:text-xs text-typography-secondary/40">
+                <T es={stat.label} en={en.stats?.[i]?.label ?? stat.label} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       <!-- Info cards: challenges, learnings, contributions -->
-      {(challenges?.length || learnings?.length || contributions?.length) && (
+      {(es.challenges?.length || es.learnings?.length || es.contributions?.length) && (
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-10 sm:mb-16">
-          {challenges && challenges.length > 0 && (
+          {es.challenges && es.challenges.length > 0 && (
             <div class="rounded-xl border border-border-color/60 bg-background-secondary p-5">
               <div class="flex items-center gap-2 mb-3">
                 <Icon name="lucide:zap" class="w-4 h-4 text-amber-400" />
-                <h3 class="font-code text-sm font-semibold text-typography-primary">Retos</h3>
+                <h3 class="font-code text-sm font-semibold text-typography-primary"><T es="Retos" en="Challenges" /></h3>
               </div>
               <ul class="space-y-2">
-                {challenges.map((c) => (
+                {es.challenges.map((c, i) => (
                   <li class="flex items-start gap-2 text-xs leading-relaxed text-typography-secondary/50">
                     <span class="mt-1 h-1 w-1 rounded-full bg-amber-400/60 shrink-0"></span>
-                    {c}
+                    <span><T es={c} en={en.challenges?.[i] ?? c} /></span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          {learnings && learnings.length > 0 && (
+          {es.learnings && es.learnings.length > 0 && (
             <div class="rounded-xl border border-border-color/60 bg-background-secondary p-5">
               <div class="flex items-center gap-2 mb-3">
                 <Icon name="lucide:lightbulb" class="w-4 h-4 text-primary" />
-                <h3 class="font-code text-sm font-semibold text-typography-primary">Aprendizajes</h3>
+                <h3 class="font-code text-sm font-semibold text-typography-primary"><T es="Aprendizajes" en="Learnings" /></h3>
               </div>
               <ul class="space-y-2">
-                {learnings.map((l) => (
+                {es.learnings.map((l, i) => (
                   <li class="flex items-start gap-2 text-xs leading-relaxed text-typography-secondary/50">
                     <span class="mt-1 h-1 w-1 rounded-full bg-primary/60 shrink-0"></span>
-                    {l}
+                    <span><T es={l} en={en.learnings?.[i] ?? l} /></span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          {contributions && contributions.length > 0 && (
+          {es.contributions && es.contributions.length > 0 && (
             <div class="rounded-xl border border-border-color/60 bg-background-secondary p-5">
               <div class="flex items-center gap-2 mb-3">
                 <Icon name="lucide:git-commit-horizontal" class="w-4 h-4 text-success" />
-                <h3 class="font-code text-sm font-semibold text-typography-primary">Aportes</h3>
+                <h3 class="font-code text-sm font-semibold text-typography-primary"><T es="Aportes" en="Contributions" /></h3>
               </div>
               <ul class="space-y-2">
-                {contributions.map((c) => (
+                {es.contributions.map((c, i) => (
                   <li class="flex items-start gap-2 text-xs leading-relaxed text-typography-secondary/50">
                     <span class="mt-1 h-1 w-1 rounded-full bg-success/60 shrink-0"></span>
-                    {c}
+                    <span><T es={c} en={en.contributions?.[i] ?? c} /></span>
                   </li>
                 ))}
               </ul>
@@ -187,9 +206,10 @@ const {
         </div>
       )}
 
-      <!-- Markdown content -->
+      <!-- Markdown content (bilingüe) -->
       <article class="prose-project rounded-xl border border-border-color/60 bg-background-secondary p-5 sm:p-8">
-        <slot />
+        <div data-i18n="es"><slot name="es" /></div>
+        <div data-i18n="en"><slot name="en" /></div>
       </article>
 
       <!-- Bottom navigation -->
@@ -199,7 +219,7 @@ const {
           class="group inline-flex items-center gap-2 rounded-lg border border-border-color/40 bg-background-secondary/50 px-5 py-2.5 font-code text-xs text-typography-secondary/50 transition-all duration-200 hover:border-primary/40 hover:text-primary"
         >
           <Icon name="lucide:arrow-left" class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
-          Ver todos los proyectos
+          <T es="Ver todos los proyectos" en="View all projects" />
         </a>
       </div>
     </div>

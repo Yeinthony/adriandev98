@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import tuFoto from '../../assets/img/yo.png';
 import AButton from '../ui/buttons/AButton.astro';
+import T from '../i18n/T.astro';
 
 import Bracket from '../codeSnippets/Bracket.astro';
 import CodeLine from '../codeSnippets/CodeLine.astro';
@@ -171,7 +172,7 @@ const techTags = [
     <!-- Left: Text content -->
     <div class="order-2 lg:order-1">
       <!-- Status badge -->
-      <div
+      <!-- <div
         class="hero-fade mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-border-color/60 bg-background-secondary/80 px-3 py-1.5 sm:px-4 sm:py-2"
         style="--delay: 0s;"
       >
@@ -179,7 +180,7 @@ const techTags = [
         <span class="font-code text-[10px] sm:text-xs text-typography-secondary/70">
           Disponible para trabajo híbrido o remoto
         </span>
-      </div>
+      </div> -->
 
       <!-- Greeting line styled like terminal -->
       <div class="hero-fade mb-3 sm:mb-4 flex items-center gap-2" style="--delay: 0.1s;">
@@ -218,9 +219,9 @@ const techTags = [
           <CodeLine tab={2} number={4}>
             <Param>loves</Param>: <StringVal>{'"TypeScript"'}</StringVal>,
           </CodeLine>
-          <CodeLine tab={2} number={5}>
+          <!-- <CodeLine tab={2} number={5}>
             <Comment>{' // ¡Abierto a nuevas oportunidades!'}</Comment>
-          </CodeLine>
+          </CodeLine> -->
           <CodeLine tab={1} number={6}>
             <Bracket>{'}'}</Bracket>;
           </CodeLine>
@@ -232,15 +233,20 @@ const techTags = [
         class="hero-fade mb-6 sm:mb-8 max-w-lg text-xs sm:text-sm leading-relaxed text-typography-secondary/60"
         style="--delay: 0.3s;"
       >
-        Transformo ideas en interfaces limpias y funcionales. Disfruto resolver problemas técnicos
-        mientras creo experiencias visuales que importen. Siempre estoy estudiando algo nuevo y
-        compartiendo conocimiento, creo que enseñar es la mejor forma de seguir aprendiendo.
+        <T
+          es="Transformo ideas en interfaces limpias y funcionales. Disfruto resolver problemas técnicos mientras creo experiencias visuales que importen. Siempre estoy estudiando algo nuevo y compartiendo conocimiento, creo que enseñar es la mejor forma de seguir aprendiendo."
+          en="I turn ideas into clean, functional interfaces. I enjoy solving technical problems while crafting visual experiences that matter. I'm always learning something new and sharing what I know — I believe teaching is the best way to keep learning."
+        />
       </p>
 
       <!-- CTAs -->
       <div class="hero-fade flex flex-wrap items-center gap-3 sm:gap-4" style="--delay: 0.35s;">
-        <AButton href="/CV-Adrian-Vargas.pdf" text="Descargar CV" variant="gradient" size="sm" icon="lucide:download" download="CV-Adrian-Vargas.pdf" />
-        <AButton href="#contact" text="Contacto" variant="secondary" size="sm" icon="lucide:send" />
+        <AButton href="/CV-Adrian-Vargas.pdf" variant="gradient" size="sm" icon="lucide:download" download="CV-Adrian-Vargas.pdf">
+          <T es="Descargar CV" en="Download CV" />
+        </AButton>
+        <AButton href="#contact" variant="secondary" size="sm" icon="lucide:send">
+          <T es="Contacto" en="Contact" />
+        </AButton>
       </div>
     </div>
 
@@ -322,17 +328,17 @@ const techTags = [
       <div class="hero-fade mt-8 sm:mt-10 flex justify-center items-center gap-4 sm:gap-6" style="--delay: 0.4s;">
         <div class="flex items-center gap-2">
           <span class="font-code text-base sm:text-lg font-bold text-primary">2+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">años<br/>exp.</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight"><span data-i18n="es">años<br/>exp.</span><span data-i18n="en">yrs<br/>exp.</span></span>
         </div>
         <div class="h-4 w-px bg-border-color/40"></div>
         <div class="flex items-center gap-2">
           <span class="font-code text-base sm:text-lg font-bold text-primary">7+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">proyectos<br/>completados</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight"><span data-i18n="es">proyectos<br/>completados</span><span data-i18n="en">completed<br/>projects</span></span>
         </div>
         <div class="h-4 w-px bg-border-color/40"></div>
         <div class="flex items-center gap-2">
           <span class="font-code text-base sm:text-lg font-bold text-primary">5+</span>
-          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight">clientes<br/>felices</span>
+          <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/40 leading-tight"><span data-i18n="es">clientes<br/>felices</span><span data-i18n="en">happy<br/>clients</span></span>
         </div>
       </div>
      </div>

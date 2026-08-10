@@ -36,6 +36,7 @@ const {
   target,
   rel,
   download,
+  ...rest
 } = Astro.props;
 
 // Variantes de gradiente
@@ -81,6 +82,7 @@ const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
         data-button-id={id}
         class={`animated-button relative ${buttonDisplayClass} p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out ${hoverScale} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
         aria-disabled={disabled}
+        {...rest}
       >
         <span
           class={`absolute inset-0 rounded-xl bg-linear-to-r ${gradientClass} p-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
@@ -90,7 +92,7 @@ const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
           <div
             class={`relative z-10 flex items-center justify-center gap-2 ${iconPosition === 'left' ? 'flex-row-reverse' : ''}`}
           >
-            <span class="transition-all duration-500 group-hover:translate-x-1">{text}</span>
+            <span class="transition-all duration-500 group-hover:translate-x-1"><slot>{text}</slot></span>
             {showIcon && (
               <Icon
                 name={icon || defaultIcon}
@@ -107,6 +109,7 @@ const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
         disabled={disabled}
         data-button-id={id}
         class={`animated-button relative ${buttonDisplayClass} p-px font-semibold leading-6 text-typography-secondary bg-border-color cursor-pointer rounded-xl transition-transform duration-300 ease-in-out ${hoverScale} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
+        {...rest}
       >
         <span
           class={`absolute inset-0 rounded-xl bg-linear-to-r ${gradientClass} p-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
@@ -116,7 +119,7 @@ const hoverScale = block ? '' : 'hover:scale-102 active:scale-100';
           <div
             class={`relative z-10 flex items-center justify-center gap-2 ${iconPosition === 'left' ? 'flex-row-reverse' : ''}`}
           >
-            <span class="transition-all duration-500 group-hover:translate-x-1">{text}</span>
+            <span class="transition-all duration-500 group-hover:translate-x-1"><slot>{text}</slot></span>
             {showIcon && (
               <Icon
                 name={icon || defaultIcon}

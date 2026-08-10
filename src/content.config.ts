@@ -19,6 +19,14 @@ const projects = defineCollection({
     liveUrl: z.string().default(''),
     repoUrl: z.string().default(''),
     featured: z.boolean().default(false),
+    stats: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .optional(),
     role: z.string().optional(),
     challenges: z.array(z.string()).optional(),
     learnings: z.array(z.string()).optional(),

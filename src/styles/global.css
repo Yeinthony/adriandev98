@@ -33,6 +33,19 @@ html {
   }
 }
 
+/* i18n — mostrar solo el idioma activo (dual-render + CSS, sin flash) */
+html[data-lang='es'] [data-i18n='en'],
+html[data-lang='en'] [data-i18n='es'] {
+  display: none !important;
+}
+
+/* Estado activo del toggle ES | EN */
+html[data-lang='es'] .lang-btn[data-lang-set='es'],
+html[data-lang='en'] .lang-btn[data-lang-set='en'] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+
 /* Section reveal on scroll */
 .section-reveal {
   opacity: 0;
@@ -75,6 +88,19 @@ html {
   line-height: 1.75;
   color: color-mix(in srgb, var(--color-typography-secondary) 60%, transparent);
   margin-bottom: 1rem;
+}
+
+/* Lead paragraph (intro) — un punto más grande y claro */
+.prose-project > p:first-of-type,
+.prose-project [data-i18n] > p:first-of-type {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: color-mix(in srgb, var(--color-typography-secondary) 78%, transparent);
+}
+
+/* Primer párrafo tras cada título de sección, algo más presente */
+.prose-project h2 + p {
+  color: color-mix(in srgb, var(--color-typography-secondary) 72%, transparent);
 }
 
 .prose-project ul,

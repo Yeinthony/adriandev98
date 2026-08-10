@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import T from './i18n/T.astro';
 
 const footerLinks = [
   { icon: 'simple-icons:github', href: 'https://github.com/Yeinthony', label: 'GitHub' },
@@ -61,7 +62,7 @@ const footerLinks = [
         <span>built_with</span>
         <Icon name="lucide:heart" class="w-3 h-3 text-red-400/60" />
         <span class="text-typography-secondary/20">&&</span>
-        <span class="text-primary/50">muchas papas fritas</span>
+        <span class="text-primary/50"><T es="muchas papas fritas" en="lots of fries" /></span>
       </p>
       <div class="flex items-center gap-2 text-typography-secondary/20">
         <span>Astro</span>

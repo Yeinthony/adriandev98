@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import AButton from '../ui/buttons/AButton.astro';
+import T from '../i18n/T.astro';
 
 const contactInfo = [
   { icon: 'lucide:mail', label: 'Email', value: 'adriandev98@gmail.com', color: '#4a9eff' },
@@ -21,9 +22,9 @@ const contactInfo = [
     <!-- Section header -->
     <div class="mb-10 sm:mb-16">
       <span class="mb-2 block font-code text-xs sm:text-sm text-primary">
-        {'// 03. Ponte En Contacto'}
+        {'// 04. '}<T es="Ponte En Contacto" en="Get In Touch" />
       </span>
-      <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary">Contacto</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-typography-primary"><T es="Contacto" en="Contact" /></h2>
       <p class="mt-3 max-w-lg text-sm text-typography-secondary/60 font-code">
         <span class="text-success">$</span> ping adrian@dev <span class="text-typography-secondary/30">--message</span>
       </p>
@@ -35,8 +36,10 @@ const contactInfo = [
         <!-- Description card -->
         <div class="contact-fade rounded-xl border border-border-color/60 bg-background-secondary p-4 sm:p-5" style="--delay: 0s;">
           <p class="text-xs sm:text-sm leading-relaxed text-typography-secondary/60">
-            ¿Tienes un proyecto en mente o simplemente quieres hablar sobre desarrollo frontend?
-            Me encantaría saber de ti. Construyamos algo genial juntos.
+            <T
+              es="¿Tienes un proyecto en mente o simplemente quieres hablar sobre desarrollo frontend? Me encantaría saber de ti. Construyamos algo genial juntos."
+              en="Have a project in mind or just want to talk about frontend development? I'd love to hear from you. Let's build something great together."
+            />
           </p>
         </div>
 
@@ -115,10 +118,10 @@ const contactInfo = [
               <Icon name="lucide:check-circle-2" class="w-6 h-6 sm:w-8 sm:h-8 text-success" />
             </div>
             <p class="font-code text-xs sm:text-sm text-success mb-1">
-              ¡Mensaje enviado con éxito!
+              <T es="¡Mensaje enviado con éxito!" en="Message sent successfully!" />
             </p>
             <p class="font-code text-[10px] sm:text-xs text-typography-secondary/40">
-              Te responderé en menos de 24 horas.
+              <T es="Te responderé en menos de 24 horas." en="I'll get back to you within 24 hours." />
             </p>
             <div class="mt-4 font-code text-[10px] text-typography-secondary/30">
               <span class="text-success">✓</span> deliver(from, message) → <span class="text-primary">200 OK</span>
@@ -136,7 +139,7 @@ const contactInfo = [
             <div class="grid gap-4 sm:gap-5 sm:grid-cols-2">
               <div>
                 <label for="contact-name" class="mb-1.5 flex items-center gap-1.5 font-code text-[10px] sm:text-[11px] text-typography-secondary/50">
-                  <span class="text-primary/40">//</span> Tu nombre
+                  <span class="text-primary/40">//</span> <T es="Tu nombre" en="Your name" />
                 </label>
                 <input
                   id="contact-name"
@@ -149,7 +152,7 @@ const contactInfo = [
               </div>
               <div>
                 <label for="contact-email" class="mb-1.5 flex items-center gap-1.5 font-code text-[10px] sm:text-[11px] text-typography-secondary/50">
-                  <span class="text-primary/40">//</span> Tu email
+                  <span class="text-primary/40">//</span> <T es="Tu email" en="Your email" />
                 </label>
                 <input
                   id="contact-email"
@@ -165,7 +168,7 @@ const contactInfo = [
             <!-- Subject -->
             <div>
               <label for="contact-subject" class="mb-1.5 flex items-center gap-1.5 font-code text-[10px] sm:text-[11px] text-typography-secondary/50">
-                <span class="text-primary/40">//</span> Asunto
+                <span class="text-primary/40">//</span> <T es="Asunto" en="Subject" />
               </label>
               <input
                 id="contact-subject"
@@ -173,6 +176,8 @@ const contactInfo = [
                 type="text"
                 required
                 placeholder="Tengo un proyecto en mente..."
+                data-i18n-ph-es="Tengo un proyecto en mente..."
+                data-i18n-ph-en="I have a project in mind..."
                 class="w-full rounded-lg border border-border-color/50 bg-background-primary px-3 sm:px-4 py-2.5 sm:py-3 font-code text-[11px] sm:text-xs text-typography-primary placeholder-typography-secondary/25 transition-all duration-200 focus:border-primary/50 focus:shadow-[0_0_0_3px_rgba(74,158,255,0.08)] focus:outline-none"
               />
             </div>
@@ -180,7 +185,7 @@ const contactInfo = [
             <!-- Message -->
             <div>
               <label for="contact-message" class="mb-1.5 flex items-center gap-1.5 font-code text-[10px] sm:text-[11px] text-typography-secondary/50">
-                <span class="text-primary/40">//</span> Tu mensaje
+                <span class="text-primary/40">//</span> <T es="Tu mensaje" en="Your message" />
               </label>
               <textarea
                 id="contact-message"
@@ -188,6 +193,8 @@ const contactInfo = [
                 required
                 rows="5"
                 placeholder="Cuéntame sobre tu proyecto, idea o simplemente saluda..."
+                data-i18n-ph-es="Cuéntame sobre tu proyecto, idea o simplemente saluda..."
+                data-i18n-ph-en="Tell me about your project, your idea, or just say hi..."
                 class="w-full resize-none rounded-lg border border-border-color/50 bg-background-primary px-3 sm:px-4 py-2.5 sm:py-3 font-code text-[11px] sm:text-xs text-typography-primary placeholder-typography-secondary/25 transition-all duration-200 focus:border-primary/50 focus:shadow-[0_0_0_3px_rgba(74,158,255,0.08)] focus:outline-none"
               ></textarea>
             </div>
@@ -195,9 +202,11 @@ const contactInfo = [
             <!-- Submit -->
             <div class="flex items-center justify-between">
               <span class="font-code text-[9px] sm:text-[10px] text-typography-secondary/25">
-                * todos los campos son requeridos
+                <T es="* todos los campos son requeridos" en="* all fields are required" />
               </span>
-              <AButton type="submit" text="Enviar mensaje" variant="gradient" size="sm" icon="lucide:send" />
+              <AButton type="submit" variant="gradient" size="sm" icon="lucide:send">
+                <T es="Enviar mensaje" en="Send message" />
+              </AButton>
             </div>
           </form>
         </div>
@@ -234,6 +243,9 @@ const contactInfo = [
 </style>
 
 <script>
+  import { ui } from '../../i18n/ui';
+  import { getLang } from '../../scripts/i18n';
+
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const success = document.getElementById('contact-success')!;
   const submitBtn = form.querySelector('[type="submit"]') as HTMLElement;
@@ -271,10 +283,10 @@ const contactInfo = [
           form.reset();
         }, 4000);
       } else {
-        alert('Error al enviar el mensaje. Intenta de nuevo.');
+        alert(ui[getLang()].contactErrorSend);
       }
     } catch {
-      alert('Error de conexión. Intenta de nuevo.');
+      alert(ui[getLang()].contactErrorNetwork);
     } finally {
       submitBtn.style.pointerEvents = '';
       submitBtn.style.opacity = '';

@@ -1,0 +1,12 @@
+---
+// Texto bilingüe: renderiza ES y EN; el CSS global muestra solo el idioma activo
+// según html[data-lang]. Sin JS se ve el español (default).
+interface Props {
+  es: string;
+  en: string;
+  class?: string;
+}
+const { es, en, class: className } = Astro.props;
+---
+
+<span data-i18n="es" class={className}>{es}</span><span data-i18n="en" class={className}>{en}</span>
